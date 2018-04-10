@@ -16,16 +16,36 @@ select
   d.f as date_from,
   d.t as date_to,
   d.rel as kubernetes_release,
-  count(distinct dup_actor_login) as contributors,
-  count(distinct dup_actor_login) filter (where e.type = 'PushEvent') as committers
+  count(distinct e.actor_id) filter (where e.type in ('PushEvent', 'PullRequestEvent', 'IssuesEvent')) as contributors,
+  count(distinct e.actor_id) filter (where e.type = 'PushEvent') as committers,
+  count(distinct e.actor_id) filter (where e.type = 'IssuesEvent') as issuers,
+  count(distinct e.actor_id) filter (where e.type = 'PullRequestEvent') as pr_creators,
+  count(distinct e.actor_id) filter (where e.type = 'PullRequestReviewCommentEvent') as pr_reviewers,
+  count(distinct e.actor_id) filter (where e.type in ('IssueCommentEvent', 'IssueCommentEvent')) as commenters,
+  count(distinct af.company_name) filter (where e.type in ('PushEvent', 'PullRequestEvent', 'IssuesEvent') and af.company_name is not null) as contributing_coms,
+  count(distinct af.company_name) filter (where e.type = 'PushEvent' and af.company_name is not null) as committing_coms,
+  count(distinct af.company_name) filter (where e.type = 'IssuesEvent' and af.company_name is not null) as issuers_coms,
+  count(distinct af.company_name) filter (where e.type = 'PullRequestEvent' and af.company_name is not null) as pr_creating_coms,
+  count(distinct af.company_name) filter (where e.type = 'PullRequestReviewCommentEvent' and af.company_name is not null) as pr_reviewing_coms,
+  count(distinct af.company_name) filter (where e.type in ('IssueCommentEvent', 'IssueCommentEvent') and af.company_name is not null) as commenting_coms
 from
-  gha_events e,
-  dates d
+  dates d,
+  gha_events e
+left join
+  gha_actors_affiliations af
+on
+  e.actor_id = af.actor_id
+  and af.dt_from <= e.created_at
+  and af.dt_to > e.created_at
 where
   e.created_at >= d.f
   and e.created_at < d.t
   and (e.dup_actor_login {{exclude_bots}})
-  and e.type in ('PushEvent', 'PullRequestEvent', 'IssuesEvent')
+  and e.type in (
+    'PushEvent', 'PullRequestEvent', 'IssuesEvent',
+    'PullRequestReviewCommentEvent',
+    'IssueCommentEvent', 'IssueCommentEvent'
+  )
 group by
   d.f,
   d.t,
