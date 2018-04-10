@@ -1,3 +1,18 @@
+create or replace function pg_temp.array_uniq_stable(anyarray) returns anyarray AS
+$$
+select array_agg(distinct_value ORDER BY first_index)
+from (
+  select
+    value as distinct_value, 
+    min(index) as first_index 
+  from 
+    unnest($1) with ordinality as input(value, index)
+  group by
+    value
+) as unique_input;
+$$
+language 'sql' immutable strict;
+
 with dates as (
   select '2014-01-01 00:00:00'::timestamp as f, '2015-07-11 04:02:31' as t, 'start - v1.0.0' as rel
   union select '2015-07-11 04:02:31'::timestamp as f, '2015-09-25 23:41:40'::timestamp as t, 'v1.0.0 - v1.1.0' as rel
@@ -16,6 +31,7 @@ select sub.date_from,
   sub.date_to,
   sub.release,
   sub.actor,
+  sub.company,
   sub.rank,
   sub.events
 from (
@@ -23,11 +39,18 @@ from (
     d.t as date_to,
     d.rel as release,
     e.actor_id as actor,
+    af.company_name as company,
     row_number() over actors_by_activity as rank,
     count(distinct e.id) as events
   from
     dates d,
     gha_events e
+  left join
+    gha_actors_affiliations af
+  on
+    e.actor_id = af.actor_id
+    and af.dt_from <= e.created_at
+    and af.dt_to > e.created_at
   where
     e.created_at >= d.f
     and e.created_at < d.t
@@ -39,7 +62,8 @@ from (
     d.f,
     d.t,
     d.rel,
-    e.actor_id
+    e.actor_id,
+    af.company_name
   window
     actors_by_activity as (
       partition by
@@ -55,6 +79,7 @@ select sub.date_from,
   sub.date_to,
   sub.release,
   sub.actor,
+  sub.company,
   sub.rank,
   sub.events
 from (
@@ -62,11 +87,18 @@ from (
     d.t as date_to,
     d.rel as release,
     e.actor_id as actor,
+    af.company_name as company,
     row_number() over actors_by_activity as rank,
     count(distinct e.id) as events
   from
     dates d,
     gha_events e
+  left join
+    gha_actors_affiliations af
+  on
+    e.actor_id = af.actor_id
+    and af.dt_from <= e.created_at
+    and af.dt_to > e.created_at
   where
     e.created_at >= d.f
     and e.created_at < d.t
@@ -76,7 +108,8 @@ from (
     d.f,
     d.t,
     d.rel,
-    e.actor_id
+    e.actor_id,
+    af.company_name
   window
     actors_by_activity as (
       partition by
@@ -92,6 +125,7 @@ select sub.date_from,
   sub.date_to,
   sub.release,
   sub.actor,
+  sub.company,
   sub.rank,
   sub.events
 from (
@@ -99,11 +133,18 @@ from (
     d.t as date_to,
     d.rel as release,
     e.actor_id as actor,
+    af.company_name as company,
     row_number() over actors_by_activity as rank,
     count(distinct e.id) as events
   from
     dates d,
     gha_events e
+  left join
+    gha_actors_affiliations af
+  on
+    e.actor_id = af.actor_id
+    and af.dt_from <= e.created_at
+    and af.dt_to > e.created_at
   where
     e.created_at >= d.f
     and e.created_at < d.t
@@ -113,7 +154,8 @@ from (
     d.f,
     d.t,
     d.rel,
-    e.actor_id
+    e.actor_id,
+    af.company_name
   window
     actors_by_activity as (
       partition by
@@ -124,8 +166,11 @@ from (
   ) sub
 where
   sub.rank <= 10
-), contributors_sorted as (
+), contributors_summary as (
   select string_agg(a.login, ',' order by tc.rank) as top_actors,
+    string_agg(tc.company, ',' order by tc.rank) as top_actors,
+    (select string_agg(c, ',') from unnest(pg_temp.array_uniq_stable(array_agg(tc.company order by tc.rank))) t(c)) as top_companies,
+    sum(tc.events) as events,
     d.f as date_from
   from
     dates d,
@@ -137,9 +182,12 @@ where
   group by
     d.f
 )
+select * from contributors_summary;
+/*
 select
   sub.*,
-  (select top_actors from contributors_sorted where date_from = sub.date_from) as top_contributors
+  (select top_actors from contributors_summary where date_from = sub.date_from) as top_contributors,
+  (select top_companies from contributors_summary where date_from = sub.date_from) as top_contributors_coms
 from (
   select
     d.f as date_from,
@@ -188,22 +236,5 @@ from (
   ) sub
 order by
   sub.date_from
-;
-/*
-  string_agg(e.dup_actor_login, ',') filter (where e.actor_id in (
-    select actor_id
-    from
-      gha_events inn
-    where
-      inn.type = 'PushEvent'
-      and inn.created_at >= d.f
-      and inn.created_at < d.t
-      and (inn.dup_actor_login {{exclude_bots}})
-    group by
-      inn.actor_id
-    order by
-      count(id) desc
-    limit 
-      10
-  )) as top_10_committers
-*/
+;*/
+drop function if exists pg_temp.array_uniq_stable(anyarray);
