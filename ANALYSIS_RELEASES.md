@@ -280,9 +280,9 @@ For March 2018 those numbers are:
 - 52.39% from top 100. So about 50% of contributions comes from 100 distinct contributors.
 - 65.81% from top 200.
 - 80.75% from top 500.
+- We still didn't get to 100%.
 
-You cna see those numbers [here](https://docs.google.com/spreadsheets/d/1dK7h8i62G7JEtTrJ2XEYoX0vInEoA7lW0m9ssl5bXag/edit#gid=609040480).
-
+You can see those numbers [here](https://docs.google.com/spreadsheets/d/1dK7h8i62G7JEtTrJ2XEYoX0vInEoA7lW0m9ssl5bXag/edit#gid=609040480).
 
 Numbers of distinct [companies for the top N contributors](https://docs.google.com/spreadsheets/d/1dK7h8i62G7JEtTrJ2XEYoX0vInEoA7lW0m9ssl5bXag/edit#gid=1798859845) are as [follows](https://docs.google.com/spreadsheets/d/1dK7h8i62G7JEtTrJ2XEYoX0vInEoA7lW0m9ssl5bXag/edit#gid=1384928858):
 
@@ -290,8 +290,8 @@ For June 2014 it was:
 
 - 2 companies for top 5 contributors (account for 80% contributions). Basically Kubernetes belongs to 2 comapanies atm.
 - 4 companies for top 10 contributors, which is 89% of contributions.
-- 7 for top 20 which gives 95% of contributions.
-- 18 for top 50 which is 99.9% of commits
+- 7 companies for top 20 which gives 95% of contributions.
+- 18 companies for top 50 which is 99.9% of commits
 - The same number 18 for top 500 which is 100%.
 
 For April 2016 (about halfway) it was:
@@ -316,5 +316,5 @@ For March 2018 it is:
 - 44 companies for top 200 contributors, account for 66% of all contributions.
 - 99 companies for top 500 contributors, account for 81% of all contributions. Still about 5 person/company, and only 80% of contributions covered.
 
-We can say that kubernetes is a very multi-company project.
+We can say that kubernetes is a very multi-company project now.
 
