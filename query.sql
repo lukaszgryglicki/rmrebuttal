@@ -11,11 +11,51 @@ with dates as (
   union select '2017-09-28 22:13:57'::timestamp as f, '2017-12-15 20:53:13'::timestamp as t, 'v1.8.0 - v1.9.0' as rel
   union select '2017-12-15 20:53:13'::timestamp as f, '2018-03-26 16:41:58'::timestamp as t, 'v1.9.0 - v1.10.0' as rel
   union select '2018-03-26 16:41:58'::timestamp as f, now() as t, 'v1.10.0 - now' as rel
+), top_contributors as (
+select sub.date_from,
+  sub.date_to,
+  sub.release,
+  sub.actor,
+  sub.events
+from (
+  select d.f as date_from,
+    d.t as date_to,
+    d.rel as release,
+    e.dup_actor_login as actor,
+    row_number() over actors_by_activity as rank,
+    count(distinct e.id) as events
+  from
+    dates d,
+    gha_events e
+  where
+    e.created_at >= d.f
+    and e.created_at < d.t
+    and (e.dup_actor_login {{exclude_bots}})
+    and e.type in (
+      'PushEvent', 'PullRequestEvent', 'IssuesEvent'
+    )
+  group by
+    d.f,
+    d.t,
+    d.rel,
+    e.dup_actor_login
+  window
+    actors_by_activity as (
+      partition by
+        d.f
+      order by
+        count(distinct e.id) desc
+    )
+  ) sub
+where
+  sub.rank <= 10
 )
+select * from top_contributors;
+/*
 select
   d.f as date_from,
   d.t as date_to,
-  d.rel as kubernetes_release,
+  d.rel as release,
   count(distinct e.actor_id) filter (where e.type in ('PushEvent', 'PullRequestEvent', 'IssuesEvent')) as contributors,
   count(distinct e.actor_id) filter (where e.type = 'PushEvent') as committers,
   count(distinct e.actor_id) filter (where e.type = 'IssuesEvent') as issuers,
@@ -27,7 +67,7 @@ select
   count(distinct af.company_name) filter (where e.type = 'IssuesEvent' and af.company_name is not null) as issuers_coms,
   count(distinct af.company_name) filter (where e.type = 'PullRequestEvent' and af.company_name is not null) as pr_creating_coms,
   count(distinct af.company_name) filter (where e.type = 'PullRequestReviewCommentEvent' and af.company_name is not null) as pr_reviewing_coms,
-  count(distinct af.company_name) filter (where e.type in ('IssueCommentEvent', 'IssueCommentEvent') and af.company_name is not null) as commenting_coms
+  count(distinct af.company_name) filter (where e.type in ('IssueCommentEvent', 'IssueCommentEvent') and af.company_name is not null) as commenting_coms,
 from
   dates d,
   gha_events e
@@ -52,4 +92,22 @@ group by
   d.rel
 order by
   d.f
-; 
+;*/
+/*
+  string_agg(e.dup_actor_login, ',') filter (where e.actor_id in (
+    select actor_id
+    from
+      gha_events inn
+    where
+      inn.type = 'PushEvent'
+      and inn.created_at >= d.f
+      and inn.created_at < d.t
+      and (inn.dup_actor_login {{exclude_bots}})
+    group by
+      inn.actor_id
+    order by
+      count(id) desc
+    limit 
+      10
+  )) as top_10_committers
+*/
