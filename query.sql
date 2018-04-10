@@ -307,7 +307,7 @@ where
 ), contributors_summary as (
   select string_agg(a.login, ',' order by tc.rank) as top_actors,
     (select string_agg(c, ',') from unnest(pg_temp.array_uniq_stable(array_agg(tc.company order by tc.rank))) t(c)) as top_companies,
-    (select count(*) from unnest(pg_temp.array_uniq_stable(array_agg(tc.company order by tc.rank))) t(c)) as n_top_companies,
+    (select count(*) filter (where c is not null) from unnest(pg_temp.array_uniq_stable(array_agg(tc.company order by tc.rank))) t(c)) as n_top_companies,
     sum(tc.events) as events,
     d.f as date_from
   from
@@ -322,7 +322,7 @@ where
 ), committers_summary as (
   select string_agg(a.login, ',' order by tc.rank) as top_actors,
     (select string_agg(c, ',') from unnest(pg_temp.array_uniq_stable(array_agg(tc.company order by tc.rank))) t(c)) as top_companies,
-    (select count(*) from unnest(pg_temp.array_uniq_stable(array_agg(tc.company order by tc.rank))) t(c)) as n_top_companies,
+    (select count(*) filter (where c is not null) from unnest(pg_temp.array_uniq_stable(array_agg(tc.company order by tc.rank))) t(c)) as n_top_companies,
     sum(tc.events) as events,
     d.f as date_from
   from
@@ -337,7 +337,7 @@ where
 ), issuers_summary as (
   select string_agg(a.login, ',' order by ti.rank) as top_actors,
     (select string_agg(c, ',') from unnest(pg_temp.array_uniq_stable(array_agg(ti.company order by ti.rank))) t(c)) as top_companies,
-    (select count(*) from unnest(pg_temp.array_uniq_stable(array_agg(ti.company order by ti.rank))) t(c)) as n_top_companies,
+    (select count(*) filter (where c is not null) from unnest(pg_temp.array_uniq_stable(array_agg(ti.company order by ti.rank))) t(c)) as n_top_companies,
     sum(ti.events) as events,
     d.f as date_from
   from
@@ -352,7 +352,7 @@ where
 ), prs_summary as (
   select string_agg(a.login, ',' order by tpr.rank) as top_actors,
     (select string_agg(c, ',') from unnest(pg_temp.array_uniq_stable(array_agg(tpr.company order by tpr.rank))) t(c)) as top_companies,
-    (select count(*) from unnest(pg_temp.array_uniq_stable(array_agg(tpr.company order by tpr.rank))) t(c)) as n_top_companies,
+    (select count(*) filter (where c is not null) from unnest(pg_temp.array_uniq_stable(array_agg(tpr.company order by tpr.rank))) t(c)) as n_top_companies,
     sum(tpr.events) as events,
     d.f as date_from
   from
@@ -367,7 +367,7 @@ where
 ), reviewers_summary as (
   select string_agg(a.login, ',' order by tr.rank) as top_actors,
     (select string_agg(c, ',') from unnest(pg_temp.array_uniq_stable(array_agg(tr.company order by tr.rank))) t(c)) as top_companies,
-    (select count(*) from unnest(pg_temp.array_uniq_stable(array_agg(tr.company order by tr.rank))) t(c)) as n_top_companies,
+    (select count(*) filter (where c is not null) from unnest(pg_temp.array_uniq_stable(array_agg(tr.company order by tr.rank))) t(c)) as n_top_companies,
     sum(tr.events) as events,
     d.f as date_from
   from
@@ -382,7 +382,7 @@ where
 ), commenters_summary as (
   select string_agg(a.login, ',' order by tc.rank) as top_actors,
     (select string_agg(c, ',') from unnest(pg_temp.array_uniq_stable(array_agg(tc.company order by tc.rank))) t(c)) as top_companies,
-    (select count(*) from unnest(pg_temp.array_uniq_stable(array_agg(tc.company order by tc.rank))) t(c)) as n_top_companies,
+    (select count(*) filter (where c is not null) from unnest(pg_temp.array_uniq_stable(array_agg(tc.company order by tc.rank))) t(c)) as n_top_companies,
     sum(tc.events) as events,
     d.f as date_from
   from
