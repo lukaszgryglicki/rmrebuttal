@@ -16,7 +16,7 @@ language 'sql' immutable strict;
 with n as (
   select {{n}} as n
 ), dates as (
-  select 1 as ord, '2014-01-01 00:00:00'::timestamp as f, '2015-07-11 04:02:31' as t, 'start - v1.0.0' as rel
+  select 1 as ord, '2014-01-01 00:00:01'::timestamp as f, '2015-07-11 04:02:31' as t, 'start - v1.0.0' as rel
   union select 2 as ord, '2015-07-11 04:02:31'::timestamp as f, '2015-09-25 23:41:40'::timestamp as t, 'v1.0.0 - v1.1.0' as rel
   union select 3 as ord, '2015-09-25 23:41:40'::timestamp as f, '2016-03-16 22:01:03'::timestamp as t, 'v1.1.0 - v1.2.0' as rel
   union select 4 as ord, '2016-03-16 22:01:03'::timestamp as f, '2016-07-01 19:19:06'::timestamp as t, 'v1.2.0 - v1.3.0' as rel
