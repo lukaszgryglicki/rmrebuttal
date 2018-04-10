@@ -27,7 +27,6 @@ run.log
 out
 .DS_Store
 temp.sql
-/*.csv
 /TODO
 /wip.sql
 sqlite/*.sql
