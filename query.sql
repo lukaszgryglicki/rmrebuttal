@@ -16,7 +16,8 @@ select
   d.f as date_from,
   d.t as date_to,
   d.rel as kubernetes_release,
-  count(distinct dup_actor_login) as contributors
+  count(distinct dup_actor_login) as contributors,
+  count(distinct dup_actor_login) filter (where e.type = 'PushEvent') as committers
 from
   gha_events e,
   dates d
