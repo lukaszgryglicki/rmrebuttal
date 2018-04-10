@@ -166,10 +166,148 @@ from (
   ) sub
 where
   sub.rank <= 10
+), top_prs as (
+select sub.date_from,
+  sub.date_to,
+  sub.release,
+  sub.actor,
+  sub.company,
+  sub.rank,
+  sub.events
+from (
+  select d.f as date_from,
+    d.t as date_to,
+    d.rel as release,
+    e.actor_id as actor,
+    af.company_name as company,
+    row_number() over actors_by_activity as rank,
+    count(distinct e.id) as events
+  from
+    dates d,
+    gha_events e
+  left join
+    gha_actors_affiliations af
+  on
+    e.actor_id = af.actor_id
+    and af.dt_from <= e.created_at
+    and af.dt_to > e.created_at
+  where
+    e.created_at >= d.f
+    and e.created_at < d.t
+    and (e.dup_actor_login {{exclude_bots}})
+    and e.type = 'PullRequestEvent'
+  group by
+    d.f,
+    d.t,
+    d.rel,
+    e.actor_id,
+    af.company_name
+  window
+    actors_by_activity as (
+      partition by
+        d.f
+      order by
+        count(distinct e.id) desc
+    )
+  ) sub
+where
+  sub.rank <= 10
+), top_reviewers as (
+select sub.date_from,
+  sub.date_to,
+  sub.release,
+  sub.actor,
+  sub.company,
+  sub.rank,
+  sub.events
+from (
+  select d.f as date_from,
+    d.t as date_to,
+    d.rel as release,
+    e.actor_id as actor,
+    af.company_name as company,
+    row_number() over actors_by_activity as rank,
+    count(distinct e.id) as events
+  from
+    dates d,
+    gha_events e
+  left join
+    gha_actors_affiliations af
+  on
+    e.actor_id = af.actor_id
+    and af.dt_from <= e.created_at
+    and af.dt_to > e.created_at
+  where
+    e.created_at >= d.f
+    and e.created_at < d.t
+    and (e.dup_actor_login {{exclude_bots}})
+    and e.type = 'PullRequestReviewCommentEvent'
+  group by
+    d.f,
+    d.t,
+    d.rel,
+    e.actor_id,
+    af.company_name
+  window
+    actors_by_activity as (
+      partition by
+        d.f
+      order by
+        count(distinct e.id) desc
+    )
+  ) sub
+where
+  sub.rank <= 10
+), top_commenters as (
+select sub.date_from,
+  sub.date_to,
+  sub.release,
+  sub.actor,
+  sub.company,
+  sub.rank,
+  sub.events
+from (
+  select d.f as date_from,
+    d.t as date_to,
+    d.rel as release,
+    e.actor_id as actor,
+    af.company_name as company,
+    row_number() over actors_by_activity as rank,
+    count(distinct e.id) as events
+  from
+    dates d,
+    gha_events e
+  left join
+    gha_actors_affiliations af
+  on
+    e.actor_id = af.actor_id
+    and af.dt_from <= e.created_at
+    and af.dt_to > e.created_at
+  where
+    e.created_at >= d.f
+    and e.created_at < d.t
+    and (e.dup_actor_login {{exclude_bots}})
+    and e.type in ('IssueCommentEvent', 'IssueCommentEvent')
+  group by
+    d.f,
+    d.t,
+    d.rel,
+    e.actor_id,
+    af.company_name
+  window
+    actors_by_activity as (
+      partition by
+        d.f
+      order by
+        count(distinct e.id) desc
+    )
+  ) sub
+where
+  sub.rank <= 10
 ), contributors_summary as (
   select string_agg(a.login, ',' order by tc.rank) as top_actors,
-    string_agg(tc.company, ',' order by tc.rank) as top_actors,
     (select string_agg(c, ',') from unnest(pg_temp.array_uniq_stable(array_agg(tc.company order by tc.rank))) t(c)) as top_companies,
+    (select count(*) from unnest(pg_temp.array_uniq_stable(array_agg(tc.company order by tc.rank))) t(c)) as n_top_companies,
     sum(tc.events) as events,
     d.f as date_from
   from
@@ -182,12 +320,13 @@ where
   group by
     d.f
 )
-select * from contributors_summary;
-/*
 select
   sub.*,
   (select top_actors from contributors_summary where date_from = sub.date_from) as top_contributors,
-  (select top_companies from contributors_summary where date_from = sub.date_from) as top_contributors_coms
+  (select top_companies from contributors_summary where date_from = sub.date_from) as top_contributors_coms,
+  (select n_top_companies from contributors_summary where date_from = sub.date_from) as n_top_contrib_coms,
+  (select events from contributors_summary where date_from = sub.date_from) as top_contributions,
+  (select (100.0 * events) / sub.contributions from contributors_summary where date_from = sub.date_from) as top_contributions_perc
 from (
   select
     d.f as date_from,
@@ -236,5 +375,6 @@ from (
   ) sub
 order by
   sub.date_from
-;*/
+;
+
 drop function if exists pg_temp.array_uniq_stable(anyarray);
