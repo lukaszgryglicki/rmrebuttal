@@ -239,8 +239,6 @@ We can clearly see that project evolved from almost single company and very few 
 
 We can see it especially in this [data sheet](https://docs.google.com/spreadsheets/d/1dK7h8i62G7JEtTrJ2XEYoX0vInEoA7lW0m9ssl5bXag/edit#gid=609040480):
 
-Month  % of top contributor's alone contributions  % of Top 2 contributions  % of Top 3 contributions  % of Top 5 contributions  % of Top 10 contributions % of Top 15 contributions % of Top 20 contributions % of Top 25 contributions % of Top 30 contributions % of Top 50 contributions % of Top 100 contributions  % of Top 200 contributions  % of Top 500 contributions
-
 For June 2014:
  
 - About 30% contributions were from a single contributor.
