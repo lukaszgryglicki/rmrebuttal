@@ -89,8 +89,77 @@ Here are the company affiliations for top 10 developers for all releases:
 - v1.9 - v1.10: Soficom,IBM,Microsoft,Fujitsu,Caicloud,Google: 6 companies.
 - v1.10 - now: DaoCloud,Soficom,Caicloud,PasientSky AS,Microsoft,Red Hat,Huawei,ZTE: 9 companies.
 
-We can see that project evelved from single company (or double at most) to 9 - which means 10 top contributors work for 9 different comanies.
+We can see that project evelved from single company (or double at most) to 9 - which means 10 top contributors work for 9 different companies.
 The avg number of companies for Top 10 developers is 4.6. Current value is 9.
 
-This means that Kubernetes is not company locked at least from about v1.4.
+This means that Kubernetes is not company locked at least from about v1.3.
 
+# Percent of Top 10 contributions versus all contributions per release
+
+The number of contributions from top 10 contributors is dropping steadily from 47% to just about 15% in last releases:
+
+- before v1.0: 47.7%
+- v1.0 - v1.1: 37.6%
+- v1.1 - v1.2: 30.0%
+- v1.2 - v1.3: 27.7%
+- v1.3 - v1.4: 24.2%
+- v1.4 - v1.5: 23.2%
+- v1.5 - v1.6: 21.1%
+- v1.6 - v1.7: 21.6%
+- v1.7 - v1.8: 20.3%
+- v1.8 - v1.9: 18.1%
+- v1.9 - v1.10: 13.9%
+- v1.10 - now: 16.8%
+
+This means that at the beginning about 50% of contributions were made by 10 people, now only about 15%. Avg value is 23.7%.
+
+# Top 10 committers analysis
+
+- before v1.0: brendandburns,lavalamp,thockin,smarterclayton,bgrant0607,jbeda,vmarmol,erictune,satnam6502,derekwaynecarr
+- v1.0 - v1.1: mikedanese,thockin,bgrant0607,brendandburns,vishh,erictune,wojtek-t,alex-mohr,zmerlynn,jszczepkowski
+- v1.1 - v1.2: bryk,johndmulhausen,mwielgus,gmarek,piosz,eparis,bgrant0607,brendandburns,a-robinson,dchen1107
+- v1.2 - v1.3: johndmulhausen,bryk,eparis,technosophos,lavalamp,mwielgus,roberthbailey,dlorenc,mikedanese,bprashanth
+- v1.3 - v1.4: justinsb,pwittrock,bryk,dlorenc,devin-donnelly,mikedanese,rmmh,technosophos,david-mcmahon,johndmulhausen
+- v1.4 - v1.5: bogdando,devin-donnelly,technosophos,bryk,mbohlool,spxtr,fejta,justinsb,chrislovecnm,rmmh
+- v1.5 - v1.6: chenopis,justinsb,aledbf,krzyzacy,devin-donnelly,spxtr,technosophos,chrislovecnm,r2d4,calebamiles
+- v1.6 - v1.7: chenopis,Steve53,krzyzacy,aledbf,justinsb,runcom,mbohlool,ideahitme,mumoshu,mwielgus
+- v1.7 - v1.8: chenopis,krzyzacy,Steve53,aledbf,unguiculus,mgoodness,mwielgus,taotaotheripper,wongma7,mrunalp
+- v1.8 - v1.9: Steve53,chenopis,aledbf,unguiculus,taotaotheripper,alexcontini,mattymo,tengqm,mrunalp,zacharysarah
+- v1.9 - v1.10: floreks,maciaszczykm,MarkThink,aledbf,chenopis,mwielgus,bacongobbler,tengqm,brendandburns,rhatdan
+- v1.10 - now: MarkThink,woopstar,aledbf,brendandburns,rhatdan,zhangxiaoyu-zidif,mrunalp,mwielgus,monopole,bacongobbler
+
+Their companies:
+
+- before v1.0: Google,Red Hat: 2 companies.
+- v1.0 - v1.1: Google: single company.
+- v1.1 - v1.2: Google,Red Hat,Cockroach Labs: 3 companies.
+- v1.2 - v1.3: Google,Red Hat,Microsoft: 3 companies.
+- v1.3 - v1.4: FathomDB,Google,Microsoft: 3 companies.
+- v1.4 - v1.5: Mirantis,Google,Microsoft,FathomDB,CNM Consulting: 5 companies.
+- v1.5 - v1.6: Google,FathomDB,Soficom,Microsoft,CNM Consulting,Red Hat: 6 companies.
+- v1.6 - v1.7: Google,Soficom,FathomDB,Red Hat,Cloud Works: 6 companies.
+- v1.7 - v1.8: Google,Soficom,Codecentric AG,WIDEN,Red Hat: 6 companies.
+- v1.8 - v1.9: Google,Soficom,Codecentric AG,CNCF,Mirantis,IBM,Red Hat: 8 companies.
+- v1.9 - v1.10: Fujitsu,Caicloud,Soficom,Google,Microsoft,IBM,Red Hat: 7 companies.
+- v1.10 - now: Caicloud,PasientSky AS,Soficom,Microsoft,Red Hat,ZTE,Google: 7 companies.
+
+We can see that project evelved from single company (or double at most) to 8 - which means 10 top contributors work for 8 different companies.
+The avg number of companies for Top 10 developers is 4.8. Current value is 7.
+
+This means that Kubernetes is not company locked at least from about v1.3.
+
+Percent of commits made by Top 10 committers:
+- before v1.0: 7100	commits which is 52.0%
+- v1.0 - v1.1: 1018	commits which is 58.0%
+- v1.1 - v1.2: 1625	commits which is 51.5%
+- v1.2 - v1.3: 1429	commits which is 53.4%
+- v1.3 - v1.4: 1027	commits which is 45.0%
+- v1.4 - v1.5: 1228	commits which is 37.9%
+- v1.5 - v1.6: 1903	commits which is 33.8%
+- v1.6 - v1.7: 2281	commits which is 42.2%
+- v1.7 - v1.8: 2432	commits which is 41.1%
+- v1.8 - v1.9: 1579	commits which is 38.5%
+- v1.9 - v1.10: 1432 commits which is 42.2%
+- v1.10 - now: 213 commits which is 46.9%
+
+This number is slowly dropping from 58% to about 34% in v1.6, avg is 44% and current value is 46%.
