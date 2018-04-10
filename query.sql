@@ -13,7 +13,9 @@ from (
 $$
 language 'sql' immutable strict;
 
-with dates as (
+with n as (
+  select {{n}} as n
+), dates as (
   select '2014-01-01 00:00:00'::timestamp as f, '2015-07-11 04:02:31' as t, 'start - v1.0.0' as rel
   union select '2015-07-11 04:02:31'::timestamp as f, '2015-09-25 23:41:40'::timestamp as t, 'v1.0.0 - v1.1.0' as rel
   union select '2015-09-25 23:41:40'::timestamp as f, '2016-03-16 22:01:03'::timestamp as t, 'v1.1.0 - v1.2.0' as rel
@@ -73,7 +75,7 @@ from (
     )
   ) sub
 where
-  sub.rank <= 10
+  sub.rank <= (select n from n)
 ), top_committers as (
 select sub.date_from,
   sub.date_to,
@@ -119,7 +121,7 @@ from (
     )
   ) sub
 where
-  sub.rank <= 10
+  sub.rank <= (select n from n)
 ), top_issuers as (
 select sub.date_from,
   sub.date_to,
@@ -165,7 +167,7 @@ from (
     )
   ) sub
 where
-  sub.rank <= 10
+  sub.rank <= (select n from n)
 ), top_prs as (
 select sub.date_from,
   sub.date_to,
@@ -211,7 +213,7 @@ from (
     )
   ) sub
 where
-  sub.rank <= 10
+  sub.rank <= (select n from n)
 ), top_reviewers as (
 select sub.date_from,
   sub.date_to,
@@ -257,7 +259,7 @@ from (
     )
   ) sub
 where
-  sub.rank <= 10
+  sub.rank <= (select n from n)
 ), top_commenters as (
 select sub.date_from,
   sub.date_to,
@@ -303,7 +305,7 @@ from (
     )
   ) sub
 where
-  sub.rank <= 10
+  sub.rank <= (select n from n)
 ), contributors_summary as (
   select string_agg(a.login, ',' order by tc.rank) as top_actors,
     (select string_agg(c, ',') from unnest(pg_temp.array_uniq_stable(array_agg(tc.company order by tc.rank))) t(c)) as top_companies,
