@@ -1,7 +1,7 @@
 #!/bin/bash
 ./get_data.sh results1.csv 1 || exit 1
 ./get_data.sh results2.csv 2 || exit 1
-./get_data.sh results5.csv 3 || exit 1
+./get_data.sh results3.csv 3 || exit 1
 ./get_data.sh results5.csv 5 || exit 1
 ./get_data.sh results10.csv 10 || exit 1
 ./get_data.sh results15.csv 15 || exit 1
