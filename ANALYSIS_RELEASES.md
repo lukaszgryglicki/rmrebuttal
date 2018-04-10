@@ -231,3 +231,92 @@ Number of companies commenting rise from 2 to 8 (in the top 10 commenters).
 Number of comments created by top 10 commenters dropped from 49% to about 17% and is quite stable since v1.5.
 Average number of different commenting companies in top 10 commenters is: 4.8.
 
+# Analysis of % of top N contributors.
+
+Chart is [here](https://docs.google.com/spreadsheets/d/1dK7h8i62G7JEtTrJ2XEYoX0vInEoA7lW0m9ssl5bXag/edit#gid=552729681).
+
+We can clearly see that project evolved from almost single company and very few contributors to a multi company community.
+
+We can see it especially in this [data sheet](https://docs.google.com/spreadsheets/d/1dK7h8i62G7JEtTrJ2XEYoX0vInEoA7lW0m9ssl5bXag/edit#gid=609040480):
+
+Month  % of top contributor's alone contributions  % of Top 2 contributions  % of Top 3 contributions  % of Top 5 contributions  % of Top 10 contributions % of Top 15 contributions % of Top 20 contributions % of Top 25 contributions % of Top 30 contributions % of Top 50 contributions % of Top 100 contributions  % of Top 200 contributions  % of Top 500 contributions
+
+For June 2014:
+ 
+- About 30% contributions were from a single contributor.
+- 59% from two contributors. So more than 50% contributions come from just two contributors.
+- 67.8% from top 3.
+- 80.6% from top 5.
+- 89% from top 10.
+- 95% from top 20.
+- 99.9% from top 50.
+- 100% is reported for top 100.
+
+for April 2016 (about halfway) it was:
+- 4.26% for the top contributor.
+- 8.40% for top two.
+- 11.48% for top 3.
+- 17.20% for top 5.
+- 27.69% for top 10.
+- 36.52% for top 15.
+- 43.09% for top 20.
+- 48.76% for top 25.
+- 53.30% for top 30. So about 50% contributions comes from about 30 contributors.
+- 66.44% for top 50.
+- 80.29% for top 100.
+- 90.27% for top 200.
+- 100.0% for top 500.
+
+For March 2018 those numbers are:
+
+- 2.63% from the top contributor.
+- 4.58% from two top contributors.
+- 6.34% from top 3.
+- 9.61% from top 5.
+- 15.55% from top 10.
+- 20.20% from top 15.
+- 23.98% from top 20.
+- 27.07% from top 25.
+- 29.83% from top 30.
+- 38.64% from top 50.
+- 52.39% from top 100. So about 50% of contributions comes from 100 distinct contributors.
+- 65.81% from top 200.
+- 80.75% from top 500.
+
+You cna see those numbers [here](https://docs.google.com/spreadsheets/d/1dK7h8i62G7JEtTrJ2XEYoX0vInEoA7lW0m9ssl5bXag/edit#gid=609040480).
+
+
+Numbers of distinct [companies for the top N contributors](https://docs.google.com/spreadsheets/d/1dK7h8i62G7JEtTrJ2XEYoX0vInEoA7lW0m9ssl5bXag/edit#gid=1798859845) are as [follows](https://docs.google.com/spreadsheets/d/1dK7h8i62G7JEtTrJ2XEYoX0vInEoA7lW0m9ssl5bXag/edit#gid=1384928858):
+
+For June 2014 it was:
+
+- 2 companies for top 5 contributors (account for 80% contributions). Basically Kubernetes belongs to 2 comapanies atm.
+- 4 companies for top 10 contributors, which is 89% of contributions.
+- 7 for top 20 which gives 95% of contributions.
+- 18 for top 50 which is 99.9% of commits
+- The same number 18 for top 500 which is 100%.
+
+For April 2016 (about halfway) it was:
+- 1 company for top 5 contributors. 17.2% contributions.
+- 2 companies for top 10 contributors, 27.69% contributions.
+- 3 companies for top 25 contributors, 48.76% contributions (so about 50% of contributions are from 3-4 companies)
+- 4 companies for top 30 contributors, 53.3% of contributions.
+- 9 companies for top 50 contributors, about 66% of contributions.
+- 25 companies for top 100 contributors, 80% contributions. So majority of contributions comes from about 25 companies.
+- 51 companies for top 200 contributors, 90% of contributions.
+- A bit more 55 companies for the top 500 contributors, about 100% of contributions.
+
+For March 2018 it is:
+- 4 companies for top 5 contributors, which is about 9.6% of contributions. So full diversity here.
+- 8 companies from top 10 contributors (so almost all different companies), which is about 15.5% contributions. Full diversity here.
+- 9 companies for the top 15 contributors, this is about 20.2% of contributions. Same here.
+- 12 companies for the top 20 contributors, about 24% of contributions - no changes.
+- 13 companies for the top 25 contributors, about 27% of contributions. We still have less than 2 people/company on average here and still only 27% of all contributions here.
+- 14 companies for the top 30 contributors, about 30% of contributions. About 2 persons/company on average, 14 companies and only 30% of all contributions.
+- 20 companies for the top 50 contributors, about 37% of all contributions. 2.5 person/company. Still diverse.
+- 33 companies for the top 100 contributors, about 52.4% of all contributions. Here we have about 100 contributors for 33 different companies contributing 50% of Kubernetes code. Very different from the beginning.
+- 44 companies for top 200 contributors, account for 66% of all contributions.
+- 99 companies for top 500 contributors, account for 81% of all contributions. Still about 5 person/company, and only 80% of contributions covered.
+
+We can say that kubernetes is a very multi-company project.
+
