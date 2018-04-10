@@ -397,6 +397,12 @@ where
 )
 select
   sub.*,
+  sub.contributions / sub.days as contributions_per_day,
+  sub.pushes / sub.days as pushes_per_day,
+  sub.issue_evs / sub.days as issue_evs_per_day,
+  sub.pr_evs / sub.days as pr_evs_per_day,
+  sub.pr_reviews / sub.days as pr_reviews_per_day,
+  sub.comment_evs / sub.days as comment_evs_per_day,
   (select top_actors from contributors_summary where date_from = sub.date_from) as top_contributors,
   (select top_companies from contributors_summary where date_from = sub.date_from) as top_contributors_coms,
   (select n_top_companies from contributors_summary where date_from = sub.date_from) as n_top_contributing_coms,
@@ -432,6 +438,7 @@ from (
     d.f as date_from,
     d.t as date_to,
     d.rel as release,
+    DATE_PART('day', d.t - d.f) as days,
     count(e.id) filter (where e.type in ('PushEvent', 'PullRequestEvent', 'IssuesEvent')) as contributions,
     count(e.id) filter (where e.type = 'PushEvent') as pushes,
     count(e.id) filter (where e.type = 'IssuesEvent') as issue_evs,
