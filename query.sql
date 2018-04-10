@@ -16,6 +16,7 @@ select sub.date_from,
   sub.date_to,
   sub.release,
   sub.actor,
+  sub.rank,
   sub.events
 from (
   select d.f as date_from,
@@ -54,6 +55,7 @@ select sub.date_from,
   sub.date_to,
   sub.release,
   sub.actor,
+  sub.rank,
   sub.events
 from (
   select d.f as date_from,
@@ -85,54 +87,107 @@ from (
   ) sub
 where
   sub.rank <= 10
+), top_issuers as (
+select sub.date_from,
+  sub.date_to,
+  sub.release,
+  sub.actor,
+  sub.rank,
+  sub.events
+from (
+  select d.f as date_from,
+    d.t as date_to,
+    d.rel as release,
+    e.actor_id as actor,
+    row_number() over actors_by_activity as rank,
+    count(distinct e.id) as events
+  from
+    dates d,
+    gha_events e
+  where
+    e.created_at >= d.f
+    and e.created_at < d.t
+    and (e.dup_actor_login {{exclude_bots}})
+    and e.type = 'IssuesEvent'
+  group by
+    d.f,
+    d.t,
+    d.rel,
+    e.actor_id
+  window
+    actors_by_activity as (
+      partition by
+        d.f
+      order by
+        count(distinct e.id) desc
+    )
+  ) sub
+where
+  sub.rank <= 10
+), contributors_sorted as (
+  select string_agg(a.login, ',' order by tc.rank) as top_actors,
+    d.f as date_from
+  from
+    dates d,
+    top_contributors tc,
+    gha_actors a
+  where
+    d.f = tc.date_from
+    and tc.actor = a.id
+  group by
+    d.f
 )
 select
-  d.f as date_from,
-  d.t as date_to,
-  d.rel as release,
-  count(e.id) filter (where e.type in ('PushEvent', 'PullRequestEvent', 'IssuesEvent')) as contributions,
-  count(e.id) filter (where e.type = 'PushEvent') as pushes,
-  count(e.id) filter (where e.type = 'IssuesEvent') as issues,
-  count(e.id) filter (where e.type = 'PullRequestEvent') as prs,
-  count(e.id) filter (where e.type = 'PullRequestReviewCommentEvent') as pr_reviews,
-  count(e.id) filter (where e.type in ('IssueCommentEvent', 'IssueCommentEvent')) as comments,
-  count(distinct e.actor_id) filter (where e.type in ('PushEvent', 'PullRequestEvent', 'IssuesEvent')) as contributors,
-  count(distinct e.actor_id) filter (where e.type = 'PushEvent') as committers,
-  count(distinct e.actor_id) filter (where e.type = 'IssuesEvent') as issuers,
-  count(distinct e.actor_id) filter (where e.type = 'PullRequestEvent') as pr_creators,
-  count(distinct e.actor_id) filter (where e.type = 'PullRequestReviewCommentEvent') as pr_reviewers,
-  count(distinct e.actor_id) filter (where e.type in ('IssueCommentEvent', 'IssueCommentEvent')) as commenters,
-  count(distinct af.company_name) filter (where e.type in ('PushEvent', 'PullRequestEvent', 'IssuesEvent') and af.company_name is not null) as contributing_coms,
-  count(distinct af.company_name) filter (where e.type = 'PushEvent' and af.company_name is not null) as committing_coms,
-  count(distinct af.company_name) filter (where e.type = 'IssuesEvent' and af.company_name is not null) as issuers_coms,
-  count(distinct af.company_name) filter (where e.type = 'PullRequestEvent' and af.company_name is not null) as pr_creating_coms,
-  count(distinct af.company_name) filter (where e.type = 'PullRequestReviewCommentEvent' and af.company_name is not null) as pr_reviewing_coms,
-  count(distinct af.company_name) filter (where e.type in ('IssueCommentEvent', 'IssueCommentEvent') and af.company_name is not null) as commenting_coms
-  -- string_agg(distinct e.dup_actor_login, ',') filter (where e.actor_id in (select inn.actor from top_committers inn where inn.date_from = d.f)) as top_10_committers
-from
-  dates d,
-  gha_events e
-left join
-  gha_actors_affiliations af
-on
-  e.actor_id = af.actor_id
-  and af.dt_from <= e.created_at
-  and af.dt_to > e.created_at
-where
-  e.created_at >= d.f
-  and e.created_at < d.t
-  and (e.dup_actor_login {{exclude_bots}})
-  and e.type in (
-    'PushEvent', 'PullRequestEvent', 'IssuesEvent',
-    'PullRequestReviewCommentEvent',
-    'IssueCommentEvent', 'IssueCommentEvent'
-  )
-group by
-  d.f,
-  d.t,
-  d.rel
+  sub.*,
+  (select top_actors from contributors_sorted where date_from = sub.date_from) as top_contributors
+from (
+  select
+    d.f as date_from,
+    d.t as date_to,
+    d.rel as release,
+    count(e.id) filter (where e.type in ('PushEvent', 'PullRequestEvent', 'IssuesEvent')) as contributions,
+    count(e.id) filter (where e.type = 'PushEvent') as pushes,
+    count(e.id) filter (where e.type = 'IssuesEvent') as issue_evs,
+    count(e.id) filter (where e.type = 'PullRequestEvent') as pr_evs,
+    count(e.id) filter (where e.type = 'PullRequestReviewCommentEvent') as pr_reviews,
+    count(e.id) filter (where e.type in ('IssueCommentEvent', 'IssueCommentEvent')) as comment_evs,
+    count(distinct e.actor_id) filter (where e.type in ('PushEvent', 'PullRequestEvent', 'IssuesEvent')) as contributors,
+    count(distinct e.actor_id) filter (where e.type = 'PushEvent') as committers,
+    count(distinct e.actor_id) filter (where e.type = 'IssuesEvent') as issuers,
+    count(distinct e.actor_id) filter (where e.type = 'PullRequestEvent') as pr_creators,
+    count(distinct e.actor_id) filter (where e.type = 'PullRequestReviewCommentEvent') as pr_reviewers,
+    count(distinct e.actor_id) filter (where e.type in ('IssueCommentEvent', 'IssueCommentEvent')) as commenters,
+    count(distinct af.company_name) filter (where e.type in ('PushEvent', 'PullRequestEvent', 'IssuesEvent') and af.company_name is not null) as contributing_coms,
+    count(distinct af.company_name) filter (where e.type = 'PushEvent' and af.company_name is not null) as committing_coms,
+    count(distinct af.company_name) filter (where e.type = 'IssuesEvent' and af.company_name is not null) as issuers_coms,
+    count(distinct af.company_name) filter (where e.type = 'PullRequestEvent' and af.company_name is not null) as pr_creating_coms,
+    count(distinct af.company_name) filter (where e.type = 'PullRequestReviewCommentEvent' and af.company_name is not null) as pr_reviewing_coms,
+    count(distinct af.company_name) filter (where e.type in ('IssueCommentEvent', 'IssueCommentEvent') and af.company_name is not null) as commenting_coms
+  from
+    dates d,
+    gha_events e
+  left join
+    gha_actors_affiliations af
+  on
+    e.actor_id = af.actor_id
+    and af.dt_from <= e.created_at
+    and af.dt_to > e.created_at
+  where
+    e.created_at >= d.f
+    and e.created_at < d.t
+    and (e.dup_actor_login {{exclude_bots}})
+    and e.type in (
+      'PushEvent', 'PullRequestEvent', 'IssuesEvent',
+      'PullRequestReviewCommentEvent',
+      'IssueCommentEvent', 'IssueCommentEvent'
+    )
+  group by
+    d.f,
+    d.t,
+    d.rel
+  ) sub
 order by
-  d.f
+  sub.date_from
 ;
 /*
   string_agg(e.dup_actor_login, ',') filter (where e.actor_id in (
