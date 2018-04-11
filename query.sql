@@ -1,4 +1,4 @@
-create or replace function pg_temp.array_uniq_stable(anyarray) returns anyarray AS
+create or replace function pg_temp.array_uniq_stable(anyarray) returns anyarray as
 $$
 select array_agg(distinct_value ORDER BY first_index)
 from (
@@ -16,21 +16,29 @@ language 'sql' immutable strict;
 with n as (
   select {{n}} as n
 ), dates as (
-  select 1 as ord, '2014-01-01 00:00:01'::timestamp as f, '2015-07-11 04:02:31' as t, 'start - v1.0.0' as rel
-  union select 2 as ord, '2015-07-11 04:02:31'::timestamp as f, '2015-09-25 23:41:40'::timestamp as t, 'v1.0.0 - v1.1.0' as rel
-  union select 3 as ord, '2015-09-25 23:41:40'::timestamp as f, '2016-03-16 22:01:03'::timestamp as t, 'v1.1.0 - v1.2.0' as rel
-  union select 4 as ord, '2016-03-16 22:01:03'::timestamp as f, '2016-07-01 19:19:06'::timestamp as t, 'v1.2.0 - v1.3.0' as rel
-  union select 5 as ord, '2016-07-01 19:19:06'::timestamp as f, '2016-09-26 18:09:47'::timestamp as t, 'v1.3.0 - v1.4.0' as rel
-  union select 6 as ord, '2016-09-26 18:09:47'::timestamp as f, '2016-12-12 23:29:43'::timestamp as t, 'v1.4.0 - v1.5.0' as rel
-  union select 7 as ord, '2016-12-12 23:29:43'::timestamp as f, '2017-03-28 16:23:06'::timestamp as t, 'v1.5.0 - v1.6.0' as rel
-  union select 8 as ord, '2017-03-28 16:23:06'::timestamp as f, '2017-06-29 22:53:16'::timestamp as t, 'v1.6.0 - v1.7.0' as rel
-  union select 9 as ord, '2017-06-29 22:53:16'::timestamp as f, '2017-09-28 22:13:57'::timestamp as t, 'v1.7.0 - v1.8.0' as rel
-  union select 10 as ord, '2017-09-28 22:13:57'::timestamp as f, '2017-12-15 20:53:13'::timestamp as t, 'v1.8.0 - v1.9.0' as rel
-  union select 11 as ord, '2017-12-15 20:53:13'::timestamp as f, '2018-03-26 16:41:58'::timestamp as t, 'v1.9.0 - v1.10.0' as rel
-  union select 12 as ord, '2018-03-26 16:41:58'::timestamp as f, now() as t, 'v1.10.0 - now' as rel
-  union select generate_series(13,13+month_count::int) as ord, '2014-01-01'::date + (interval '1' month * generate_series(0,month_count::int)) as f,
+  select 1 as ord, '2014-01-01 00:00:02'::timestamp as f, '2016-03-10 00:00:00'::timestamp as t, 'Before joining CNCF' as rel
+  union select 2 as ord, '2016-03-10 00:00:00'::timestamp as f, now() as t, 'Since joining CNCF' as rel
+  union select 101 as ord, '2014-01-01 00:00:01'::timestamp as f, '2015-07-11 04:02:31' as t, 'start - v1.0.0' as rel
+  union select 102 as ord, '2015-07-11 04:02:31'::timestamp as f, '2015-09-25 23:41:40'::timestamp as t, 'v1.0.0 - v1.1.0' as rel
+  union select 103 as ord, '2015-09-25 23:41:40'::timestamp as f, '2016-03-16 22:01:03'::timestamp as t, 'v1.1.0 - v1.2.0' as rel
+  union select 104 as ord, '2016-03-16 22:01:03'::timestamp as f, '2016-07-01 19:19:06'::timestamp as t, 'v1.2.0 - v1.3.0' as rel
+  union select 105 as ord, '2016-07-01 19:19:06'::timestamp as f, '2016-09-26 18:09:47'::timestamp as t, 'v1.3.0 - v1.4.0' as rel
+  union select 106 as ord, '2016-09-26 18:09:47'::timestamp as f, '2016-12-12 23:29:43'::timestamp as t, 'v1.4.0 - v1.5.0' as rel
+  union select 107 as ord, '2016-12-12 23:29:43'::timestamp as f, '2017-03-28 16:23:06'::timestamp as t, 'v1.5.0 - v1.6.0' as rel
+  union select 108 as ord, '2017-03-28 16:23:06'::timestamp as f, '2017-06-29 22:53:16'::timestamp as t, 'v1.6.0 - v1.7.0' as rel
+  union select 109 as ord, '2017-06-29 22:53:16'::timestamp as f, '2017-09-28 22:13:57'::timestamp as t, 'v1.7.0 - v1.8.0' as rel
+  union select 110 as ord, '2017-09-28 22:13:57'::timestamp as f, '2017-12-15 20:53:13'::timestamp as t, 'v1.8.0 - v1.9.0' as rel
+  union select 111 as ord, '2017-12-15 20:53:13'::timestamp as f, '2018-03-26 16:41:58'::timestamp as t, 'v1.9.0 - v1.10.0' as rel
+  union select 112 as ord, '2018-03-26 16:41:58'::timestamp as f, now() as t, 'v1.10.0 - now' as rel
+  union select generate_series(201,201+month_count::int) as ord, '2014-01-01'::date + (interval '1' month * generate_series(0,month_count::int)) as f,
     '2014-02-01'::date + (interval '1' month * generate_series(0,month_count::int)) as t,
     to_char('2014-01-01'::date + (interval '1' month * generate_series(0,month_count::int)), 'YYYY-MM-DD') as rel
+  from (
+    select (DATE_PART('year', now()) - DATE_PART('year', '2014-01-01'::date)) * 12 + (DATE_PART('month', now()) - DATE_PART('month', '2014-01-01'::date)) as month_count
+  ) sub
+  union select generate_series(301,301+month_count::int, 3) as ord, '2014-01-01'::date + (interval '1' month * generate_series(0,month_count::int,3)) as f,
+    '2014-04-01'::date + (interval '1' month * generate_series(0,month_count::int,3)) as t,
+    'Quarter from ' || to_char('2014-01-01'::date + (interval '1' month * generate_series(0,month_count::int, 3)), 'YYYY-MM') as rel
   from (
     select (DATE_PART('year', now()) - DATE_PART('year', '2014-01-01'::date)) * 12 + (DATE_PART('month', now()) - DATE_PART('month', '2014-01-01'::date)) as month_count
   ) sub
