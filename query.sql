@@ -83,7 +83,7 @@ from (
   window
     actors_by_activity as (
       partition by
-        d.f
+        d.rel
       order by
         count(distinct e.id) desc
     )
@@ -129,7 +129,7 @@ from (
   window
     actors_by_activity as (
       partition by
-        d.f
+        d.rel
       order by
         count(distinct e.id) desc
     )
@@ -175,7 +175,7 @@ from (
   window
     actors_by_activity as (
       partition by
-        d.f
+        d.rel
       order by
         count(distinct e.id) desc
     )
@@ -221,7 +221,7 @@ from (
   window
     actors_by_activity as (
       partition by
-        d.f
+        d.rel
       order by
         count(distinct e.id) desc
     )
@@ -267,7 +267,7 @@ from (
   window
     actors_by_activity as (
       partition by
-        d.f
+        d.rel
       order by
         count(distinct e.id) desc
     )
@@ -313,7 +313,7 @@ from (
   window
     actors_by_activity as (
       partition by
-        d.f
+        d.rel
       order by
         count(distinct e.id) desc
     )
