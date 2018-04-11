@@ -16,9 +16,9 @@ language 'sql' immutable strict;
 with n as (
   select {{n}} as n
 ), dates as (
-  select 1 as ord, '2014-01-01 00:00:02'::timestamp as f, '2016-03-10 00:00:00'::timestamp as t, 'Before joining CNCF' as rel
+  select 1 as ord, '2014-01-01 00:00:00'::timestamp as f, '2016-03-10 00:00:00'::timestamp as t, 'Before joining CNCF' as rel
   union select 2 as ord, '2016-03-10 00:00:00'::timestamp as f, now() as t, 'Since joining CNCF' as rel
-  union select 101 as ord, '2014-01-01 00:00:01'::timestamp as f, '2015-07-11 04:02:31' as t, 'start - v1.0.0' as rel
+  union select 101 as ord, '2014-01-01 00:00:00'::timestamp as f, '2015-07-11 04:02:31' as t, 'start - v1.0.0' as rel
   union select 102 as ord, '2015-07-11 04:02:31'::timestamp as f, '2015-09-25 23:41:40'::timestamp as t, 'v1.0.0 - v1.1.0' as rel
   union select 103 as ord, '2015-09-25 23:41:40'::timestamp as f, '2016-03-16 22:01:03'::timestamp as t, 'v1.1.0 - v1.2.0' as rel
   union select 104 as ord, '2016-03-16 22:01:03'::timestamp as f, '2016-07-01 19:19:06'::timestamp as t, 'v1.2.0 - v1.3.0' as rel
@@ -334,7 +334,8 @@ where
     d.f = tc.date_from
     and tc.actor = a.id
   group by
-    d.f
+    d.f,
+    d.t
 ), committers_summary as (
   select string_agg(a.login, ',' order by tc.rank) as top_actors,
     (select string_agg(c, ',') from unnest(pg_temp.array_uniq_stable(array_agg(tc.company order by tc.rank))) t(c)) as top_companies,
@@ -349,7 +350,8 @@ where
     d.f = tc.date_from
     and tc.actor = a.id
   group by
-    d.f
+    d.f,
+    d.t
 ), issuers_summary as (
   select string_agg(a.login, ',' order by ti.rank) as top_actors,
     (select string_agg(c, ',') from unnest(pg_temp.array_uniq_stable(array_agg(ti.company order by ti.rank))) t(c)) as top_companies,
@@ -364,7 +366,8 @@ where
     d.f = ti.date_from
     and ti.actor = a.id
   group by
-    d.f
+    d.f,
+    d.t
 ), prs_summary as (
   select string_agg(a.login, ',' order by tpr.rank) as top_actors,
     (select string_agg(c, ',') from unnest(pg_temp.array_uniq_stable(array_agg(tpr.company order by tpr.rank))) t(c)) as top_companies,
@@ -379,7 +382,8 @@ where
     d.f = tpr.date_from
     and tpr.actor = a.id
   group by
-    d.f
+    d.f,
+    d.t
 ), reviewers_summary as (
   select string_agg(a.login, ',' order by tr.rank) as top_actors,
     (select string_agg(c, ',') from unnest(pg_temp.array_uniq_stable(array_agg(tr.company order by tr.rank))) t(c)) as top_companies,
@@ -394,7 +398,8 @@ where
     d.f = tr.date_from
     and tr.actor = a.id
   group by
-    d.f
+    d.f,
+    d.t
 ), commenters_summary as (
   select string_agg(a.login, ',' order by tc.rank) as top_actors,
     (select string_agg(c, ',') from unnest(pg_temp.array_uniq_stable(array_agg(tc.company order by tc.rank))) t(c)) as top_companies,
@@ -409,7 +414,8 @@ where
     d.f = tc.date_from
     and tc.actor = a.id
   group by
-    d.f
+    d.f,
+    d.t
 )
 select
   sub.*,
