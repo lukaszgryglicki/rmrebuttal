@@ -318,3 +318,58 @@ For March 2018 it is:
 
 We can say that kubernetes is a very multi-company project now.
 
+# Quarterly analysis
+
+Percent of total contributions for Top N contributors is constantly going down.
+See chart [here](https://docs.google.com/spreadsheets/d/1dK7h8i62G7JEtTrJ2XEYoX0vInEoA7lW0m9ssl5bXag/edit#gid=164151852).
+
+Number of contribuiting companies for Top N contributors is rising constantly, see chart [here](https://docs.google.com/spreadsheets/d/1dK7h8i62G7JEtTrJ2XEYoX0vInEoA7lW0m9ssl5bXag/edit#gid=1029945304).
+Values for Top 100 and Top 200 are not strictly rising, which means that there is less than 100 distinct companies that makes most of the contributions now.
+
+# CNCF join analysis
+
+Analysing project stats before and after joining CNCF we can see:
+
+Before joining CNCF:
+
+- 6.6% contributions were made by the the most active single contributor. It is 1/15 of all contributions.
+- 11% contributions were made by just two contributors. This is 1/9 of all contributions.
+- 15.8% contributors were made by top 3 contributors from single company.
+- 22.5% contributions were made by top 5 contributors from 2 companies.
+- 34% (one third) of contributions were made by top 10 contributors for 2 companies
+- 43% of contributions were made by top 15 contributors for 2 companies.
+- 50% of contributions were made by top 20 contributors from 3 companies. So half of the all contributions are from 3 companies and 20 contributors.
+- 57% of contributions were made by top 25 contributors from 3 companies. Still 57% of all copntributions from 3 companies. Average 8 contributors per company.
+- 62% of contributions were made by top 30 contributors from 4 companies. 4th company adds 5% of contributions and 5 contributors.
+- 75% of contributions were made by top 50 contributors from 6 companies. Majority of all contributions comes from 6 companies and about 8 contributors per company.
+- 85% of contributions were made by top 100 contributors from 16 companies. 10 new companies account for 10% of commits and about 50 new developers.
+- 91% of contributions were made by top 200 contributors from 44 companies. 28 new companies account for 6% of commits and 100 new contributors.
+- 95% of contributions were made by top 500 contributors from 149. 105 new companies account for 4% of contributions and 300 new contributors.
+
+After joining CNCF:
+- 2.5% of contributions were made by singe most active contributor. This is 1/40 of all contributions.
+- 4.7% of contributions were made by the two most active contributors, each from different company. This is about 1/22 of all contributions.
+- 6.5% of contributions were made by top 3 contributors, from 3 different companies. This is about 1/15 of all contributions.
+- 9.4% of contributions were made by top 5 contributors, from 3 different companies.
+- 15% of contributions were made by top 10 contributors, from 5 different companies. New 5 contributors are from next 2 companies and adds 5.5% of contributions.
+- 20% of contributions were made by top 15 contributors, from 5 different companies. 1/5 of all contributions comes from 15 contributors and 5 companies.
+- 24% of contributions were made by top 20 contributors, from 7 different companies. 1/4 of all contributions comes from 20 contributors from 7 companies.
+- 28% of contributions were made by top 25 contributors, from 9 different companies.
+- 31% of contributions were made by top 30 contributors, from 9 different companies. 1/3 of all contributions comes from 30 contributors from 9 companies. Average 3 contributors/company.
+- 41% of contributions were made by top 50 contributors, from 13 different companies. 4 new companies add 10% contributions and 20 contributors.
+- 57% of contributions were made by top 100 contributors, from 24 different companies. A bit more than half of contributions comes for less than 100 contributors and about 24 companies or less.
+- 70% of contributions were made by top 200 contributors, from 41 different companies. 17 new companies add 13% of contributions and 100 contributors.
+- 81% of contributions were made by top 500 contributors, from 114 different companies. 4/5 of all contributions comes from more than 100 companies and 500 contributors. 
+- Still far for 100%, just about majority between Top 200 and Top 500. 
+- We can see that about 4/5 of project contributions are created by more than 100 companies and at least 500 contributors. Still 20% left.
+
+Direct differences:
+
+Before joining CNCF:
+- 43% contributions from 2 companies, 57% from 3 companies and 25 contributors, 75% from just 6 companies. Next 20% from 143 different companies and 450 contributors!
+- 85% in Top 100 contributors from 16 companies.
+
+After joining CNCF:
+- 5% contributions from top 2 companies, 1/3 from 9 companies, 57% from 24 companies and 100 contributors, 70% from 41 companies and 200 contributors. Next 11% from 73 companies and 300 contributors!
+- 81% in Top 500 contributors from 114 companies. About the same percent as before joining CNCF, but 5 times more contributors and 7 times more companies.
+
