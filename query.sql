@@ -325,13 +325,15 @@ where
     (select string_agg(c, ',') from unnest(pg_temp.array_uniq_stable(array_agg(tc.company order by tc.rank))) t(c)) as top_companies,
     (select count(*) filter (where c is not null) from unnest(pg_temp.array_uniq_stable(array_agg(tc.company order by tc.rank))) t(c)) as n_top_companies,
     sum(tc.events) as events,
-    d.f as date_from
+    d.f as date_from,
+    d.t as date_to
   from
     dates d,
     top_contributors tc,
     gha_actors a
   where
     d.f = tc.date_from
+    and d.t = tc.date_to
     and tc.actor = a.id
   group by
     d.f,
@@ -341,13 +343,15 @@ where
     (select string_agg(c, ',') from unnest(pg_temp.array_uniq_stable(array_agg(tc.company order by tc.rank))) t(c)) as top_companies,
     (select count(*) filter (where c is not null) from unnest(pg_temp.array_uniq_stable(array_agg(tc.company order by tc.rank))) t(c)) as n_top_companies,
     sum(tc.events) as events,
-    d.f as date_from
+    d.f as date_from,
+    d.t as date_to
   from
     dates d,
     top_committers tc,
     gha_actors a
   where
     d.f = tc.date_from
+    and d.t = tc.date_to
     and tc.actor = a.id
   group by
     d.f,
@@ -357,13 +361,15 @@ where
     (select string_agg(c, ',') from unnest(pg_temp.array_uniq_stable(array_agg(ti.company order by ti.rank))) t(c)) as top_companies,
     (select count(*) filter (where c is not null) from unnest(pg_temp.array_uniq_stable(array_agg(ti.company order by ti.rank))) t(c)) as n_top_companies,
     sum(ti.events) as events,
-    d.f as date_from
+    d.f as date_from,
+    d.t as date_to
   from
     dates d,
     top_issuers ti,
     gha_actors a
   where
     d.f = ti.date_from
+    and d.t = ti.date_to
     and ti.actor = a.id
   group by
     d.f,
@@ -373,13 +379,15 @@ where
     (select string_agg(c, ',') from unnest(pg_temp.array_uniq_stable(array_agg(tpr.company order by tpr.rank))) t(c)) as top_companies,
     (select count(*) filter (where c is not null) from unnest(pg_temp.array_uniq_stable(array_agg(tpr.company order by tpr.rank))) t(c)) as n_top_companies,
     sum(tpr.events) as events,
-    d.f as date_from
+    d.f as date_from,
+    d.t as date_to
   from
     dates d,
     top_prs tpr,
     gha_actors a
   where
     d.f = tpr.date_from
+    and d.t = tpr.date_to
     and tpr.actor = a.id
   group by
     d.f,
@@ -389,13 +397,15 @@ where
     (select string_agg(c, ',') from unnest(pg_temp.array_uniq_stable(array_agg(tr.company order by tr.rank))) t(c)) as top_companies,
     (select count(*) filter (where c is not null) from unnest(pg_temp.array_uniq_stable(array_agg(tr.company order by tr.rank))) t(c)) as n_top_companies,
     sum(tr.events) as events,
-    d.f as date_from
+    d.f as date_from,
+    d.t as date_to
   from
     dates d,
     top_reviewers tr,
     gha_actors a
   where
     d.f = tr.date_from
+    and d.t = tr.date_to
     and tr.actor = a.id
   group by
     d.f,
@@ -405,13 +415,15 @@ where
     (select string_agg(c, ',') from unnest(pg_temp.array_uniq_stable(array_agg(tc.company order by tc.rank))) t(c)) as top_companies,
     (select count(*) filter (where c is not null) from unnest(pg_temp.array_uniq_stable(array_agg(tc.company order by tc.rank))) t(c)) as n_top_companies,
     sum(tc.events) as events,
-    d.f as date_from
+    d.f as date_from,
+    d.t as date_to
   from
     dates d,
     top_commenters tc,
     gha_actors a
   where
     d.f = tc.date_from
+    and d.t = tc.date_to
     and tc.actor = a.id
   group by
     d.f,
@@ -425,36 +437,36 @@ select
   sub.pr_evs / sub.days as pr_evs_per_day,
   sub.pr_reviews / sub.days as pr_reviews_per_day,
   sub.comment_evs / sub.days as comment_evs_per_day,
-  (select top_actors from contributors_summary where date_from = sub.date_from) as top_contributors,
-  (select top_companies from contributors_summary where date_from = sub.date_from) as top_contributors_coms,
-  (select n_top_companies from contributors_summary where date_from = sub.date_from) as n_top_contributing_coms,
-  (select events from contributors_summary where date_from = sub.date_from) as top_contributions,
-  (select (100.0 * events) / sub.contributions from contributors_summary where date_from = sub.date_from) as top_contributions_perc,
-  (select top_actors from committers_summary where date_from = sub.date_from) as top_committers,
-  (select top_companies from committers_summary where date_from = sub.date_from) as top_committers_coms,
-  (select n_top_companies from committers_summary where date_from = sub.date_from) as n_top_committing_coms,
-  (select events from committers_summary where date_from = sub.date_from) as top_commits,
-  (select (100.0 * events) / sub.pushes from committers_summary where date_from = sub.date_from) as top_commits_perc,
-  (select top_actors from issuers_summary where date_from = sub.date_from) as top_issuers,
-  (select top_companies from issuers_summary where date_from = sub.date_from) as top_issuers_coms,
-  (select n_top_companies from issuers_summary where date_from = sub.date_from) as n_top_issuers_coms,
-  (select events from issuers_summary where date_from = sub.date_from) as top_issues,
-  (select (100.0 * events) / sub.issue_evs from issuers_summary where date_from = sub.date_from) as top_issues_perc,
-  (select top_actors from prs_summary where date_from = sub.date_from) as top_pr_creators,
-  (select top_companies from prs_summary where date_from = sub.date_from) as top_pr_creators_coms,
-  (select n_top_companies from prs_summary where date_from = sub.date_from) as n_top_pr_creators_coms,
-  (select events from prs_summary where date_from = sub.date_from) as top_prs,
-  (select (100.0 * events) / sub.pr_evs from prs_summary where date_from = sub.date_from) as top_prs_perc,
-  (select top_actors from reviewers_summary where date_from = sub.date_from) as top_reviewers,
-  (select top_companies from reviewers_summary where date_from = sub.date_from) as top_reviewers_coms,
-  (select n_top_companies from reviewers_summary where date_from = sub.date_from) as n_top_reviewers_coms,
-  (select events from reviewers_summary where date_from = sub.date_from) as top_reviews,
-  (select (100.0 * events) / sub.pr_reviews from reviewers_summary where date_from = sub.date_from) as top_reviews_perc,
-  (select top_actors from commenters_summary where date_from = sub.date_from) as top_commenters,
-  (select top_companies from commenters_summary where date_from = sub.date_from) as top_commenters_coms,
-  (select n_top_companies from commenters_summary where date_from = sub.date_from) as n_top_commenters_coms,
-  (select events from commenters_summary where date_from = sub.date_from) as top_comments,
-  (select (100.0 * events) / sub.comment_evs from commenters_summary where date_from = sub.date_from) as top_comments_perc
+  (select top_actors from contributors_summary where date_from = sub.date_from and date_to = sub.date_to) as top_contributors,
+  (select top_companies from contributors_summary where date_from = sub.date_from and date_to = sub.date_to) as top_contributors_coms,
+  (select n_top_companies from contributors_summary where date_from = sub.date_from and date_to = sub.date_to) as n_top_contributing_coms,
+  (select events from contributors_summary where date_from = sub.date_from and date_to = sub.date_to) as top_contributions,
+  (select (100.0 * events) / sub.contributions from contributors_summary where date_from = sub.date_from and date_to = sub.date_to) as top_contributions_perc,
+  (select top_actors from committers_summary where date_from = sub.date_from and date_to = sub.date_to) as top_committers,
+  (select top_companies from committers_summary where date_from = sub.date_from and date_to = sub.date_to) as top_committers_coms,
+  (select n_top_companies from committers_summary where date_from = sub.date_from and date_to = sub.date_to) as n_top_committing_coms,
+  (select events from committers_summary where date_from = sub.date_from and date_to = sub.date_to) as top_commits,
+  (select (100.0 * events) / sub.pushes from committers_summary where date_from = sub.date_from and date_to = sub.date_to) as top_commits_perc,
+  (select top_actors from issuers_summary where date_from = sub.date_from and date_to = sub.date_to) as top_issuers,
+  (select top_companies from issuers_summary where date_from = sub.date_from and date_to = sub.date_to) as top_issuers_coms,
+  (select n_top_companies from issuers_summary where date_from = sub.date_from and date_to = sub.date_to) as n_top_issuers_coms,
+  (select events from issuers_summary where date_from = sub.date_from and date_to = sub.date_to) as top_issues,
+  (select (100.0 * events) / sub.issue_evs from issuers_summary where date_from = sub.date_from and date_to = sub.date_to) as top_issues_perc,
+  (select top_actors from prs_summary where date_from = sub.date_from and date_to = sub.date_to) as top_pr_creators,
+  (select top_companies from prs_summary where date_from = sub.date_from and date_to = sub.date_to) as top_pr_creators_coms,
+  (select n_top_companies from prs_summary where date_from = sub.date_from and date_to = sub.date_to) as n_top_pr_creators_coms,
+  (select events from prs_summary where date_from = sub.date_from and date_to = sub.date_to) as top_prs,
+  (select (100.0 * events) / sub.pr_evs from prs_summary where date_from = sub.date_from and date_to = sub.date_to) as top_prs_perc,
+  (select top_actors from reviewers_summary where date_from = sub.date_from and date_to = sub.date_to) as top_reviewers,
+  (select top_companies from reviewers_summary where date_from = sub.date_from and date_to = sub.date_to) as top_reviewers_coms,
+  (select n_top_companies from reviewers_summary where date_from = sub.date_from and date_to = sub.date_to) as n_top_reviewers_coms,
+  (select events from reviewers_summary where date_from = sub.date_from and date_to = sub.date_to) as top_reviews,
+  (select (100.0 * events) / sub.pr_reviews from reviewers_summary where date_from = sub.date_from and date_to = sub.date_to) as top_reviews_perc,
+  (select top_actors from commenters_summary where date_from = sub.date_from and date_to = sub.date_to) as top_commenters,
+  (select top_companies from commenters_summary where date_from = sub.date_from and date_to = sub.date_to) as top_commenters_coms,
+  (select n_top_companies from commenters_summary where date_from = sub.date_from and date_to = sub.date_to) as n_top_commenters_coms,
+  (select events from commenters_summary where date_from = sub.date_from and date_to = sub.date_to) as top_comments,
+  (select (100.0 * events) / sub.comment_evs from commenters_summary where date_from = sub.date_from and date_to = sub.date_to) as top_comments_perc
 from (
   select
     d.ord as ord,
