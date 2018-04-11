@@ -22,6 +22,9 @@ func mergeCSVs(stat, cols, ns, ofn string) error {
 	colNum := make(map[string]int)
 	colsAry := strings.Split(cols, ";")
 	for i, col := range colsAry {
+		if col == "" {
+			return fmt.Errorf("empty column definition in '%s'", cols)
+		}
 		colsMap[col] = struct{}{}
 		colNum[col] = i
 	}
