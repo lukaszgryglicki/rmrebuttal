@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"regexp"
 	"strconv"
 	"strings"
 	"time"
@@ -20,6 +21,9 @@ func mergeCSVs(stat, cols, ns, rowRegexp, ofn string) error {
 		return err
 	}
 
+	// Debug/verbose mode
+	debug := os.Getenv("DEBUG") != ""
+
 	// Get filename prefix
 	prefix := os.Getenv("PG_DB")
 	if prefix == "" || prefix == "gha" {
@@ -31,6 +35,16 @@ func mergeCSVs(stat, cols, ns, rowRegexp, ofn string) error {
 	lAry := len(ary)
 	if lAry > 2 || (lAry == 1 && rowRegexp != "") {
 		return fmt.Errorf("'%s' should be einter empty or in 'colname;;;regexp' format", rowRegexp)
+	}
+	var (
+		reColumn  *string
+		colRegexp *regexp.Regexp
+	)
+	if lAry == 2 {
+		if ary[0] != "" && ary[1] != "" {
+			colRegexp = regexp.MustCompile(ary[1])
+			reColumn = &ary[0]
+		}
 	}
 
 	// column names set
@@ -92,6 +106,32 @@ func mergeCSVs(stat, cols, ns, rowRegexp, ofn string) error {
 					}
 				}
 				continue
+			}
+			// Handle filtering rows by row[reColumn] matching colRegexp
+			if reColumn != nil && colRegexp != nil {
+				cNum, ok := colNum[*reColumn]
+				if !ok {
+					return fmt.Errorf("regexp filtering column '%s' not found", *reColumn)
+				}
+				if cNum >= nStatic {
+					return fmt.Errorf(
+						"regexp filtering column '%s' is not static (there are %d static cols, this column is #%d)",
+						*reColumn,
+						nStatic,
+						cNum+1,
+					)
+				}
+				index, ok := colIndex[*reColumn]
+				if !ok {
+					return fmt.Errorf("regexp filtering column '%s' not found by index", *reColumn)
+				}
+				value := record[index]
+				if !colRegexp.MatchString(value) {
+					if debug {
+						fmt.Printf("Skipping %s=%s, not matching %s\n", *reColumn, value, colRegexp.String())
+					}
+					continue
+				}
 			}
 			for col, i := range colIndex {
 				// Column is "ColName I J" I-th column and J-th N

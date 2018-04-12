@@ -16,6 +16,7 @@ Use DevStats databases and tools to generate contributors stats
 - RRE `colname;;;regexp` will be used to select only rows which `colname` matches `regexp`, example:
 - `RRE="release;;;(?im)cncf" RNAME="join" PROJS="prometheus allprj" ./merge_results.sh`.
 - To have full control on merging use: `PG_DB=projdb ./rmrebuttal nStaticCols 'staticCol1;...;staticColN;dynamicCol1;...;dynamicColN' 'n1;...;N' "colName;;;regexp" "output.csv".
+-You can see some examples in `example_merges.sh`.
 
 # Data
 - Data is available [here](https://docs.google.com/spreadsheets/d/1dK7h8i62G7JEtTrJ2XEYoX0vInEoA7lW0m9ssl5bXag/edit?usp=sharing)
