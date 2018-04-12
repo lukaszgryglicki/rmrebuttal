@@ -373,3 +373,6 @@ After joining CNCF:
 - 5% contributions from top 2 companies, 1/3 from 9 companies, 57% from 24 companies and 100 contributors, 70% from 41 companies and 200 contributors. Next 11% from 73 companies and 300 contributors!
 - 81% in Top 500 contributors from 114 companies. About the same percent as before joining CNCF, but 5 times more contributors and 7 times more companies.
 
+# Analysis of different CNCF projects
+
+Data sheet is [here](https://docs.google.com/spreadsheets/d/1EfZEsgfhxUnnOfyHqJO_Uh3aIyDigQkf5bY0AYIrdnE/edit?usp=sharing).
