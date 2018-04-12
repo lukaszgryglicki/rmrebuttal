@@ -1,0 +1,11 @@
+release,date_from,n_top_committing_coms 1,n_top_committing_coms 2,n_top_committing_coms 3,n_top_committing_coms 5,n_top_committing_coms 10,n_top_committing_coms 15,n_top_committing_coms 20,n_top_committing_coms 25,n_top_committing_coms 30,n_top_committing_coms 50,n_top_committing_coms 100,n_top_committing_coms 200,n_top_committing_coms 500,n_top_committing_coms 1000
+Quarter from 2015-10,2015-10-01T00:00:00Z,1,1,2,2,2,2,2,2,2,2,2,2,2,2
+Quarter from 2016-01,2016-01-01T00:00:00Z,1,2,2,2,2,2,2,2,2,2,2,2,2,2
+Quarter from 2016-04,2016-04-01T00:00:00Z,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Quarter from 2016-07,2016-07-01T00:00:00Z,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Quarter from 2016-10,2016-10-01T00:00:00Z,1,1,2,3,3,3,3,3,3,3,3,3,3,3
+Quarter from 2017-01,2017-01-01T00:00:00Z,1,1,1,2,4,4,4,4,4,4,4,4,4,4
+Quarter from 2017-04,2017-04-01T00:00:00Z,1,1,2,2,5,5,5,5,5,5,5,5,5,5
+Quarter from 2017-07,2017-07-01T00:00:00Z,1,1,2,2,5,5,5,5,5,5,5,5,5,5
+Quarter from 2017-10,2017-10-01T00:00:00Z,1,2,2,3,5,5,5,5,5,5,5,5,5,5
+Quarter from 2018-01,2018-01-01T00:00:00Z,1,2,2,3,6,7,7,7,7,7,7,7,7,7

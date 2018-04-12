@@ -59,6 +59,12 @@ func mergeCSVs(stat, cols, ns, rowRegexp, ofn string) error {
 		colsMap[col] = struct{}{}
 		colNum[col] = i
 	}
+	lColsAry := len(colsAry)
+
+	// No dynamic columns
+	if nStatic >= lColsAry {
+		return fmt.Errorf("no dynamic columns, all columns: %d, static columns: %d", lColsAry, nStatic)
+	}
 
 	// n values set
 	nMap := make(map[int]struct{})
@@ -103,6 +109,13 @@ func mergeCSVs(stat, cols, ns, rowRegexp, ofn string) error {
 					_, ok := colsMap[col]
 					if ok {
 						colIndex[col] = i
+					}
+				}
+				// Check if all columns found
+				for col := range colsMap {
+					_, ok := colIndex[col]
+					if !ok {
+						return fmt.Errorf("column '%s' not found in data files", col)
 					}
 				}
 				continue

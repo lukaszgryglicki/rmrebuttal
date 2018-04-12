@@ -1,0 +1,6 @@
+release,date_from,n_top_committing_coms 1,n_top_committing_coms 2,n_top_committing_coms 3,n_top_committing_coms 5,n_top_committing_coms 10,n_top_committing_coms 15,n_top_committing_coms 20,n_top_committing_coms 25,n_top_committing_coms 30,n_top_committing_coms 50,n_top_committing_coms 100,n_top_committing_coms 200,n_top_committing_coms 500,n_top_committing_coms 1000
+2014,2014-01-01T00:00:00Z,1,2,2,2,4,4,5,7,8,11,28,59,108,108
+2015,2015-01-01T00:00:00Z,1,1,2,3,4,5,6,9,10,12,19,42,44,44
+2016,2016-01-01T00:00:00Z,1,2,3,4,6,8,11,13,15,21,27,39,65,65
+2017,2017-01-01T00:00:00Z,1,2,3,3,6,10,13,16,18,24,35,52,101,103
+2018,2018-01-01T00:00:00Z,1,2,3,4,7,11,12,14,15,22,34,63,84,84
