@@ -8,7 +8,8 @@ Use DevStats databases and tools to generate contributors stats
 - Run `PG_PASS=... PG_DB=prometheus ./get_data.sh 30` script to generate Top 30 data for Prometheus.
 - Argument is the N parameter, script analyses Top N developers, contributors, issue creators etc.
 - You can also regenerate all data for N=1, 2, 3, 5, 10, 15, 20, 25, 50, 100, 200, 500, 1000 via `PG_PASS=... ./generate_all.sh`.
-- You can generate only specific Top N's for a specific project by: `PG_PASS=... ONLY="1 10 100" PG_DB=prometheus ./generate_all.sh`.
+- You can generate only specific Top N's for a specific project by: `PG_PASS=... NS="1 10 100" PG_DB=prometheus ./generate_all.sh`.
+- You can generate data for specific projects (default is kubernetes) by ``PG_PASS=... NS="10 100" PROJS="kubernetes prometheus" ./generate_all.sh`.
 
 # Data
 - Data is available [here](https://docs.google.com/spreadsheets/d/1dK7h8i62G7JEtTrJ2XEYoX0vInEoA7lW0m9ssl5bXag/edit?usp=sharing)
