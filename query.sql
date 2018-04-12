@@ -48,9 +48,6 @@ with n as (
   from (
     select (date_part('year', now()) - date_part('year', (select date from start_date))) * 12 + (date_part('month', now()) - date_part('month', (select date from start_date))) as month_count
   ) sub
-)
-select * from dates order by ord;
-/*
 ), top_contributors as (
 select sub.date_from,
   sub.date_to,
@@ -516,5 +513,4 @@ from (
 order by
   sub.ord
 ;
-*/
 drop function if exists pg_temp.array_uniq_stable(anyarray);
