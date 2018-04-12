@@ -10,12 +10,29 @@ import (
 	"time"
 )
 
-// Get cols from results/resultI.csv files I={n1, n2, ..., nN} and save to ofn.
-func mergeCSVs(stat, cols, ns, ofn string) error {
+// Get cols from results/prefix_top_I.csv files I={n1, n2, ..., nN} and save to ofn.
+// Prefix is the project name, like kubernetes, prometheus ... it is taken from PG_DB env variable
+func mergeCSVs(stat, cols, ns, rowRegexp, ofn string) error {
+	// Static columns, they are not dependent on N
+	// Static columns are from the left.
 	nStatic, err := strconv.Atoi(stat)
 	if err != nil {
 		return err
 	}
+
+	// Get filename prefix
+	prefix := os.Getenv("PG_DB")
+	if prefix == "" || prefix == "gha" {
+		prefix = "kubernetes"
+	}
+
+	// Row regexp handle
+	ary := strings.Split(rowRegexp, ";;;")
+	lAry := len(ary)
+	if lAry > 2 || (lAry == 1 && rowRegexp != "") {
+		return fmt.Errorf("'%s' should be einter empty or in 'colname;;;regexp' format", rowRegexp)
+	}
+
 	// column names set
 	colsMap := make(map[string]struct{})
 	// Column number - to be able to detect if this is a static column
@@ -28,6 +45,7 @@ func mergeCSVs(stat, cols, ns, ofn string) error {
 		colsMap[col] = struct{}{}
 		colNum[col] = i
 	}
+
 	// n values set
 	nMap := make(map[int]struct{})
 	nAry := strings.Split(ns, ";")
@@ -38,6 +56,7 @@ func mergeCSVs(stat, cols, ns, ofn string) error {
 		}
 		nMap[iCol] = struct{}{}
 	}
+
 	// main output: column name --> values
 	// each column name ins "columnI J" I-th column and J-th N
 	// First nStatic columns doesn not have N added.
@@ -45,7 +64,7 @@ func mergeCSVs(stat, cols, ns, ofn string) error {
 	nN := 0
 	for n := range nMap {
 		// Read Top N file (current n)
-		ifn := fmt.Sprintf("results/results%d.csv", n)
+		ifn := fmt.Sprintf("results/%s_top_%d.csv", prefix, n)
 		iFile, err := os.Open(ifn)
 		if err != nil {
 			return err
@@ -140,11 +159,18 @@ func mergeCSVs(stat, cols, ns, ofn string) error {
 
 func main() {
 	dtStart := time.Now()
-	if len(os.Args) < 5 {
-		fmt.Printf("%s: required nStaticCols 'col1;col2;..;colN' 'n1;n2,..,nN' output.csv\n", os.Args[0])
+	if len(os.Args) < 6 {
+		fmt.Printf("%s: required nStaticCols 'col1;col2;..;colN' 'n1;n2;..;nN' 'colname;;;regexp' output.csv\n", os.Args[0])
+		fmt.Printf(
+			"Example: %s 3 'date_from;date_to;release;n_top_contributing_coms;top_contributions_perc;"+
+				"n_top_committing_coms;top_commits_perc' '10;30;100' 'release;;;(?im)cncf'\n",
+			os.Args[0],
+		)
+		fmt.Printf("%s: use empty colname or empty regexp to skip selecting rows\n", os.Args[0])
+		os.Exit(1)
 		return
 	}
-	err := mergeCSVs(os.Args[1], os.Args[2], os.Args[3], os.Args[4])
+	err := mergeCSVs(os.Args[1], os.Args[2], os.Args[3], os.Args[4], os.Args[5])
 	if err != nil {
 		fmt.Printf("Error: %s\n", err)
 	}

@@ -1,5 +1,5 @@
 #!/bin/bash
-if [ -z "${PG_PASS}" ]
+if [ -z "$PG_PASS" ]
 then
   echo "You need to set PG_PASS environment variable to run this script"
   exit 1
@@ -10,7 +10,7 @@ then
 else
   all_n=$NS
 fi
-if [ -z "PROJS" ]
+if [ -z "$PROJS" ]
 then
   PROJS="kubernetes"
 fi
