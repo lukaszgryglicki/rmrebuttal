@@ -31,11 +31,11 @@ do
   fi
   pref="results/${proj}_${rname}"
   echo "Project: $proj, DB: $db, prefix: $pref"
-  PG_DB=$db ./rmrebuttal 3 'release;date_from;date_to;n_top_contributing_coms' '1;2;3;5;10;15;20;25;30;50;100;200;500;1000' "$RRE" "${pref}_contributing_companies.csv" || exit 3
-  PG_DB=$db ./rmrebuttal 3 'release;date_from;date_to;n_top_committing_coms' '1;2;3;5;10;15;20;25;30;50;100;200;500;1000' "$RRE" "${pref}_committing_companies.csv" || exit 4
-  PG_DB=$db ./rmrebuttal 3 'release;date_from;date_to;top_contributions_perc' '1;2;3;5;10;15;20;25;30;50;100;200;500;1000' "$RRE" "${pref}_percent_contributions.csv" || exit 5
-  PG_DB=$db ./rmrebuttal 3 'release;date_from;date_to;top_commits_perc' '1;2;3;5;10;15;20;25;30;50;100;200;500;1000' "$RRE" "${pref}_percent_commits.csv" || exit 6
-  PG_DB=$db ./rmrebuttal 3 'release;date_from;date_to;top_comp_contributions_perc' '1;2;3;5;10;15;20;25;30;50;100;200;500;1000' "$RRE" "${pref}_comp_percent_contributions.csv" || exit 5
-  PG_DB=$db ./rmrebuttal 3 'release;date_from;date_to;top_comp_commits_perc' '1;2;3;5;10;15;20;25;30;50;100;200;500;1000' "$RRE" "${pref}_comp_percent_commits.csv" || exit 6
+  PG_DB=$db ./rmrebuttal 3 'release;date_from;date_to;n_top_contributing_coms' '1;2;3;4;5;10;15;20;25;30;50;100;200;500;1000' "$RRE" "${pref}_contributing_companies.csv" || exit 3
+  PG_DB=$db ./rmrebuttal 3 'release;date_from;date_to;n_top_committing_coms' '1;2;3;4;5;10;15;20;25;30;50;100;200;500;1000' "$RRE" "${pref}_committing_companies.csv" || exit 4
+  PG_DB=$db ./rmrebuttal 3 'release;date_from;date_to;top_contributions_perc' '1;2;3;4;5;10;15;20;25;30;50;100;200;500;1000' "$RRE" "${pref}_percent_contributions.csv" || exit 5
+  PG_DB=$db ./rmrebuttal 3 'release;date_from;date_to;top_commits_perc' '1;2;3;4;5;10;15;20;25;30;50;100;200;500;1000' "$RRE" "${pref}_percent_commits.csv" || exit 6
+  PG_DB=$db ./rmrebuttal 3 'release;date_from;date_to;top_comp_contributions_perc' '1;2;3;4;5;10;15;20;25;30;50;100;200;500;1000' "$RRE" "${pref}_comp_percent_contributions.csv" || exit 5
+  PG_DB=$db ./rmrebuttal 3 'release;date_from;date_to;top_comp_commits_perc' '1;2;3;4;5;10;15;20;25;30;50;100;200;500;1000' "$RRE" "${pref}_comp_percent_commits.csv" || exit 6
 done
 echo 'OK'
