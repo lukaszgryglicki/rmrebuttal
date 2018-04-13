@@ -375,4 +375,30 @@ After joining CNCF:
 
 # Analysis of different CNCF projects
 
-Data sheet is [here](https://docs.google.com/spreadsheets/d/1EfZEsgfhxUnnOfyHqJO_Uh3aIyDigQkf5bY0AYIrdnE/edit?usp=sharing).
+- Contributors data sheets and charts are [here](https://docs.google.com/spreadsheets/d/1EfZEsgfhxUnnOfyHqJO_Uh3aIyDigQkf5bY0AYIrdnE/edit?usp=sharing).
+- Committers data sheets and charts are [here](https://docs.google.com/spreadsheets/d/1OY8JHREEZgbvRDFDOplxJJFvEtlcs5TSXbv6JER9_TY/edit?usp=sharing).
+
+We can see that when allalysing strict committers only:
+
+- Kubernetes
+  - Had 59% of commits from just two people from a single company in 2nd quarter of 2014.
+  - In 3rd quarter of 2017 54% of commits comes from Top 20 committers from 9 companies.
+  - Top 100 committers from 38 companies make 96%, and there is less than 200 committers.
+
+- Prometheus:
+  - Had 98.3 % of commits from two people from a single company in 2nd quarter of 2014. 78% from one developer.
+  - In 2nd quarter of 2017 68.7% of commits were made by 5 developers from 4 companies.
+  - Top 15 committers from 10 companies make 99% of all commits in 1st quarter of 2018, and there is less than 20 committers from 10 companies.
+
+- Containerd:
+  - Had 92.9% of commits from 2 developers from a single company in 1st quarter of 2016.
+  - In 1st quarter of 2018 87% of commits from 5 developers from 4 companies.
+  - Top 10 developers from 7 companies make 99% of all commits in 1st quarter of 2018 and there is less than 15 committers from 7 companies.
+
+- All CNCF projects combined:
+  - Had 89% of all commits from top 10 developers from 5 companies in 1st quarter of 2014.
+  - In first quarter of 2016 Top 25 committers from 10 companies are making 54% of all commits.
+  - In 3rd quarter of 2017 top 30 developers from 20 companies are making 51% of all commits.
+  - In 3rd quarter of 2017 top 50 developers from 27 companies are making 63% of all commits.
+  - Top 200 committers from 84 companies make 96% and there is less than 500 committers.
+

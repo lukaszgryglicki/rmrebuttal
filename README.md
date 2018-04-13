@@ -36,7 +36,12 @@ Use DevStats databases and tools to generate contributors stats
 - I = {1,2,...N}.
 - Example: `COLFMT="release,Release,,;date_from,Date,d,2006-01-02;top_commits_perc,Percent of top %s committers commits,n,%.1f%%"`.
 
-# Results, charts and analysis
+# Analysis
 
-- Data is available [here](https://docs.google.com/spreadsheets/d/1dK7h8i62G7JEtTrJ2XEYoX0vInEoA7lW0m9ssl5bXag/edit?usp=sharing)
-- Analysis is [here](https://github.com/lukaszgryglicki/rmrebuttal/blob/master/ANALYSIS_RELEASES.md).
+- Detailed analysis is [here](https://github.com/lukaszgryglicki/rmrebuttal/blob/master/ANALYSIS_RELEASES.md).
+
+# Data sheets and charts
+
+- Top N data and charts are [here](https://docs.google.com/spreadsheets/d/1dK7h8i62G7JEtTrJ2XEYoX0vInEoA7lW0m9ssl5bXag/edit?usp=sharing)
+- Contributors data sheets and charts are [here](https://docs.google.com/spreadsheets/d/1EfZEsgfhxUnnOfyHqJO_Uh3aIyDigQkf5bY0AYIrdnE/edit?usp=sharing).
+- Committers data sheets and charts are [here](https://docs.google.com/spreadsheets/d/1OY8JHREEZgbvRDFDOplxJJFvEtlcs5TSXbv6JER9_TY/edit?usp=sharing).

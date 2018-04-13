@@ -1,5 +1,5 @@
 Release,Date from,Date to,Distinct companies for top 1 committers,Distinct companies for top 2 committers,Distinct companies for top 3 committers,Distinct companies for top 5 committers,Distinct companies for top 10 committers,Distinct companies for top 15 committers,Distinct companies for top 20 committers,Distinct companies for top 25 committers,Distinct companies for top 30 committers,Distinct companies for top 50 committers,Distinct companies for top 100 committers,Distinct companies for top 200 committers,Distinct companies for top 500 committers,Distinct companies for top 1000 committers
-start - v0.10.0,1/6/2014,1/26/2015,1,1,1,1,5,5,5,5,5,5,5,5,5,5
+start - v0.10.0,1/6/2014,1/26/2015,1,1,1,2,5,5,5,5,5,5,5,5,5,5
 v0.10.0 - v0.20.0,1/26/2015,6/15/2016,1,1,2,3,7,10,10,10,10,10,10,10,10,10
 v0.20.0 - v1.0.0,6/15/2016,7/18/2016,1,2,3,4,7,7,7,7,7,7,7,7,7,7
 v1.0.0 - v1.1.0,7/18/2016,9/3/2016,1,2,2,4,6,6,6,6,6,6,6,6,6,6

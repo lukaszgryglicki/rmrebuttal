@@ -1,6 +1,6 @@
 Release,Date from,Date to,Distinct companies for top 1 committers,Distinct companies for top 2 committers,Distinct companies for top 3 committers,Distinct companies for top 5 committers,Distinct companies for top 10 committers,Distinct companies for top 15 committers,Distinct companies for top 20 committers,Distinct companies for top 25 committers,Distinct companies for top 30 committers,Distinct companies for top 50 committers,Distinct companies for top 100 committers,Distinct companies for top 200 committers,Distinct companies for top 500 committers,Distinct companies for top 1000 committers
-2014,1/1/2014,1/1/2015,1,2,2,2,4,4,5,7,8,11,28,58,108,108
+2014,1/1/2014,1/1/2015,1,2,2,2,4,4,5,7,8,11,29,58,108,108
 2015,1/1/2015,1/1/2016,1,1,2,3,4,5,6,9,10,12,19,41,44,44
 2016,1/1/2016,1/1/2017,1,2,3,4,6,8,11,13,15,21,27,39,65,65
-2017,1/1/2017,1/1/2018,1,2,3,3,6,10,13,16,18,24,35,53,102,103
-2018,1/1/2018,4/13/2018,1,2,3,3,7,11,12,14,15,21,34,63,84,84
+2017,1/1/2017,1/1/2018,1,2,3,3,6,10,13,16,18,24,35,53,100,103
+2018,1/1/2018,4/13/2018,1,2,3,3,7,11,12,14,15,22,34,63,84,84
