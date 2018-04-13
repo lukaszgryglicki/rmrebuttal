@@ -1,6 +1,6 @@
 Release,Date from,Date to,Distinct companies for top 1 contributors,Distinct companies for top 2 contributors,Distinct companies for top 3 contributors,Distinct companies for top 5 contributors,Distinct companies for top 10 contributors,Distinct companies for top 15 contributors,Distinct companies for top 20 contributors,Distinct companies for top 25 contributors,Distinct companies for top 30 contributors,Distinct companies for top 50 contributors,Distinct companies for top 100 contributors,Distinct companies for top 200 contributors,Distinct companies for top 500 contributors,Distinct companies for top 1000 contributors
-2014,1/1/2014,1/1/2015,1,1,2,2,4,4,6,8,9,10,29,67,134,180
-2015,1/1/2015,1/1/2016,1,1,2,2,4,4,4,6,6,9,16,42,128,266
-2016,1/1/2016,1/1/2017,1,2,2,3,5,6,8,10,11,17,23,40,105,250
-2017,1/1/2017,1/1/2018,1,2,3,3,6,8,12,15,16,23,32,51,120,272
-2018,1/1/2018,4/13/2018,1,2,3,4,7,10,14,16,17,24,35,60,108,201
+2014,1/1/2014,1/1/2015,1,1,2,2,4,4,6,8,9,10,28,66,133,179
+2015,1/1/2015,1/1/2016,1,1,2,2,4,4,4,6,6,9,16,41,127,265
+2016,1/1/2016,1/1/2017,1,2,2,3,5,6,8,10,11,16,22,39,104,249
+2017,1/1/2017,1/1/2018,1,2,3,3,6,8,12,15,15,22,31,50,118,272
+2018,1/1/2018,4/13/2018,1,2,3,4,7,10,14,16,17,24,34,59,107,201

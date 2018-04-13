@@ -1,4 +1,4 @@
-Release,Date from,Date to,Top 1 committers commits as percent of all,Top 2 committers commits as percent of all,Top 3 committers commits as percent of all,Top 5 committers commits as percent of all,Top 10 committers commits as percent of all,Top 15 committers commits as percent of all,Top 20 committers commits as percent of all,Top 25 committers commits as percent of all,Top 30 committers commits as percent of all,Top 50 committers commits as percent of all,Top 100 committers commits as percent of all,Top 200 committers commits as percent of all,Top 500 committers commits as percent of all,Top 1000 committers commits as percent of all
+Release,Date from,Date to,Top 1 developers commits as percent of all,Top 2 developers commits as percent of all,Top 3 developers commits as percent of all,Top 5 developers commits as percent of all,Top 10 developers commits as percent of all,Top 15 developers commits as percent of all,Top 20 developers commits as percent of all,Top 25 developers commits as percent of all,Top 30 developers commits as percent of all,Top 50 developers commits as percent of all,Top 100 developers commits as percent of all,Top 200 developers commits as percent of all,Top 500 developers commits as percent of all,Top 1000 developers commits as percent of all
 03/2014,3/1/2014,4/1/2014,80.0%,100.0%,100.0%,100.0%,100.0%,100.0%,100.0%,100.0%,100.0%,100.0%,100.0%,100.0%,100.0%,100.0%
 04/2014,4/1/2014,5/1/2014,100.0%,100.0%,100.0%,100.0%,100.0%,100.0%,100.0%,100.0%,100.0%,100.0%,100.0%,100.0%,100.0%,100.0%
 05/2014,5/1/2014,6/1/2014,87.5%,100.0%,100.0%,100.0%,100.0%,100.0%,100.0%,100.0%,100.0%,100.0%,100.0%,100.0%,100.0%,100.0%
@@ -48,4 +48,4 @@ Release,Date from,Date to,Top 1 committers commits as percent of all,Top 2 commi
 01/2018,1/1/2018,2/1/2018,30.9%,52.1%,63.6%,76.7%,94.5%,99.2%,100.0%,100.0%,100.0%,100.0%,100.0%,100.0%,100.0%,100.0%
 02/2018,2/1/2018,3/1/2018,27.8%,51.2%,65.8%,81.9%,95.0%,99.3%,100.0%,100.0%,100.0%,100.0%,100.0%,100.0%,100.0%,100.0%
 03/2018,3/1/2018,4/1/2018,40.6%,66.9%,77.7%,90.0%,99.6%,100.0%,100.0%,100.0%,100.0%,100.0%,100.0%,100.0%,100.0%,100.0%
-04/2018,4/1/2018,5/1/2018,28.2%,47.4%,57.7%,75.6%,97.4%,100.0%,100.0%,100.0%,100.0%,100.0%,100.0%,100.0%,100.0%,100.0%
+04/2018,4/1/2018,5/1/2018,27.2%,46.9%,59.3%,76.5%,97.5%,100.0%,100.0%,100.0%,100.0%,100.0%,100.0%,100.0%,100.0%,100.0%
