@@ -19,6 +19,7 @@ with n as (
   select '{{start_date}}' as string,
     '{{start_date}}'::date as date,
     '{{start_date}}'::timestamp as timestamp,
+    date_trunc('month', '{{start_date}}'::date) as month_date,
     to_date(date_part('year', '{{start_date}}'::date)::varchar || '-' || ((((date_part('month', '{{start_date}}'::date) - 1)::int / 3) * 3) + 1)::varchar, 'YYYY-MM') as quarter_date
 ), join_date as (
   select '{{join_date}}' as string,
@@ -35,9 +36,9 @@ with n as (
     'Since joining CNCF' as rel
   union {{proj_rels}}
   union select generate_series(2001,2001+month_count::int) as ord,
-    (select date from start_date) + (interval '1' month * generate_series(0,month_count::int)) as f,
-    (select date from start_date) + (interval '1' month * (1 + generate_series(0,month_count::int))) as t,
-    to_char((select date from start_date) + (interval '1' month * generate_series(0,month_count::int)), 'MM/YYYY') as rel
+    (select month_date from start_date) + (interval '1' month * generate_series(0,month_count::int)) as f,
+    (select month_date from start_date) + (interval '1' month * (1 + generate_series(0,month_count::int))) as t,
+    to_char((select month_date from start_date) + (interval '1' month * generate_series(0,month_count::int)), 'MM/YYYY') as rel
   from (
     select (date_part('year', now()) - date_part('year', (select date from start_date))) * 12 + (date_part('month', now()) - date_part('month', (select date from start_date))) as month_count
   ) sub
