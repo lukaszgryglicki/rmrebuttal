@@ -45,3 +45,5 @@ Use DevStats databases and tools to generate contributors stats
 - Top N data and charts are [here](https://docs.google.com/spreadsheets/d/1dK7h8i62G7JEtTrJ2XEYoX0vInEoA7lW0m9ssl5bXag/edit?usp=sharing)
 - Contributors data sheets and charts are [here](https://docs.google.com/spreadsheets/d/1EfZEsgfhxUnnOfyHqJO_Uh3aIyDigQkf5bY0AYIrdnE/edit?usp=sharing).
 - Committers data sheets and charts are [here](https://docs.google.com/spreadsheets/d/1OY8JHREEZgbvRDFDOplxJJFvEtlcs5TSXbv6JER9_TY/edit?usp=sharing).
+- Contributing companies data sheets and charts are [here](https://docs.google.com/spreadsheets/d/1elKts4n5FHzLr9Ob4OUID1MvJ51dmdQDnPP6mgN-O78/edit?usp=sharing).
+- Final Kubernetes chart is [here](https://docs.google.com/spreadsheets/d/1tdHqydcDQ7bUWMxHbYADiLmym2UBFcDTUDPCCfRNJuc/edit?usp=sharing).
