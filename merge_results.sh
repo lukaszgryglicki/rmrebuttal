@@ -16,7 +16,7 @@ then
 fi
 if [ -z "$COLFMT" ]
 then
-  COLFMT="release,Release,,;date_from,Date from,d,2006-01-02;date_to,Date to,d,2006-01-02;n_top_contributing_coms,Distinct companies for top %s contributors,,;n_top_committing_coms,Distinct companies for top %s committers,,;top_commits_perc,Top %s committers commits as percent of all,n,%.1f%%;top_contributions_perc,Top %s contributors contributions as percent of all,n,%.1f%%"
+  COLFMT="release,Release,,;date_from,Date from,d,1/2/2006;date_to,Date to,d,1/2/2006;n_top_contributing_coms,Distinct companies for top %s contributors,,;n_top_committing_coms,Distinct companies for top %s committers,,;top_commits_perc,Top %s committers commits as percent of all,n,%.1f%%;top_contributions_perc,Top %s contributors contributions as percent of all,n,%.1f%%"
 fi
 export COLFMT
 for proj in $PROJS
