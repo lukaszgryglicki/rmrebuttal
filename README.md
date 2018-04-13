@@ -14,7 +14,7 @@ Use DevStats databases and tools to generate contributors stats
 - Argument is the N parameter, script analyses Top N developers, contributors, issue creators etc.
 - You can also regenerate all data for N=1, 2, 3, 5, 10, 15, 20, 25, 50, 100, 200, 500, 1000 via `PG_PASS=... ./generate_all.sh`.
 - You can generate only specific Top N's for a specific project by: `PG_PASS=... NS="1 10 100" PG_DB=prometheus ./generate_all.sh`.
-- You can generate data for specific projects (default is kubernetes) by `PG_PASS=... NS="10 100" PROJS="kubernetes prometheus" ./generate_all.sh`.
+- You can generate data for specific projects (default is all projects) by `PG_PASS=... NS="10 100" PROJS="kubernetes prometheus" ./generate_all.sh`.
 - To merge data from multiple Top N analyses, use: `./merge_results.sh`. It will assume default project kubernetes.
 - To specify own list of projects use: `PROJS="prometheus allprj" ./merge_results.sh`.
 - To select only specific rows use: `RRE="colname;;;regexp" RNAME="name_prefix" ./merge_results.sh`.

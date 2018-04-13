@@ -37,14 +37,14 @@ with n as (
   union select generate_series(2001,2001+month_count::int) as ord,
     (select date from start_date) + (interval '1' month * generate_series(0,month_count::int)) as f,
     (select date from start_date) + (interval '1' month * (1 + generate_series(0,month_count::int))) as t,
-    to_char((select date from start_date) + (interval '1' month * generate_series(0,month_count::int)), 'YYYY-MM-DD') as rel
+    to_char((select date from start_date) + (interval '1' month * generate_series(0,month_count::int)), 'MM/YYYY') as rel
   from (
     select (date_part('year', now()) - date_part('year', (select date from start_date))) * 12 + (date_part('month', now()) - date_part('month', (select date from start_date))) as month_count
   ) sub
   union select generate_series(3001,3001+month_count::int, 3) as ord,
     (select quarter_date from start_date) + (interval '1' month * generate_series(0,month_count::int,3)) as f,
     (select quarter_date from start_date) + (interval '1' month * (3 + generate_series(0,month_count::int,3))) as t,
-    'Quarter from ' || to_char((select quarter_date from start_date) + (interval '1' month * generate_series(0,month_count::int, 3)), 'YYYY-MM') as rel
+    'Quarter from ' || to_char((select quarter_date from start_date) + (interval '1' month * generate_series(0,month_count::int, 3)), 'MM/YYYY') as rel
   from (
     select (date_part('year', now()) - date_part('year', (select date from start_date))) * 12 + (date_part('month', now()) - date_part('month', (select date from start_date))) as month_count
   ) sub

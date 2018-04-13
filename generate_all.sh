@@ -12,7 +12,7 @@ else
 fi
 if [ -z "$PROJS" ]
 then
-  PROJS="kubernetes"
+  PROJS="kubernetes prometheus containerd allprj"
 fi
 for proj in $PROJS
 do
