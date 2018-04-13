@@ -1,3 +1,3 @@
-release,date_from,n_top_contributing_coms 1,n_top_contributing_coms 2,n_top_contributing_coms 3,n_top_contributing_coms 5,n_top_contributing_coms 10,n_top_contributing_coms 15,n_top_contributing_coms 20,n_top_contributing_coms 25,n_top_contributing_coms 30,n_top_contributing_coms 50,n_top_contributing_coms 100,n_top_contributing_coms 200,n_top_contributing_coms 500,n_top_contributing_coms 1000
-Before joining CNCF,2014-01-06T00:00:00Z,1,1,1,3,7,10,13,15,16,27,50,89,169,178
-Since joining CNCF,2016-05-09T00:00:00Z,1,2,3,4,9,10,11,15,19,30,46,70,149,211
+Release,Date from,Date to,Distinct companies for top 1 contributors,Distinct companies for top 2 contributors,Distinct companies for top 3 contributors,Distinct companies for top 5 contributors,Distinct companies for top 10 contributors,Distinct companies for top 15 contributors,Distinct companies for top 20 contributors,Distinct companies for top 25 contributors,Distinct companies for top 30 contributors,Distinct companies for top 50 contributors,Distinct companies for top 100 contributors,Distinct companies for top 200 contributors,Distinct companies for top 500 contributors,Distinct companies for top 1000 contributors
+Before joining CNCF,2014-01-06,2016-05-09,1,1,1,3,7,10,13,15,16,27,50,89,169,178
+Since joining CNCF,2016-05-09,2018-04-12,1,2,3,4,9,10,11,15,19,30,46,70,149,211

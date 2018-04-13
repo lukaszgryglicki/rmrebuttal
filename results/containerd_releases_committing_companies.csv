@@ -1,15 +1,15 @@
-release,date_from,n_top_committing_coms 1,n_top_committing_coms 2,n_top_committing_coms 3,n_top_committing_coms 5,n_top_committing_coms 10,n_top_committing_coms 15,n_top_committing_coms 20,n_top_committing_coms 25,n_top_committing_coms 30,n_top_committing_coms 50,n_top_committing_coms 100,n_top_committing_coms 200,n_top_committing_coms 500,n_top_committing_coms 1000
-start - v0.0.5,2015-12-17T00:00:00Z,1,1,2,2,2,2,2,2,2,2,2,2,2,2
-v0.0.5 - v0.1.0,2016-02-12T23:00:00Z,1,2,2,2,2,2,2,2,2,2,2,2,2,2
-v0.1.0 - v0.2.0,2016-03-21T20:00:00Z,1,1,1,1,1,1,1,1,1,1,1,1,1,1
-v0.2.0 - v0.2.9,2016-04-14T21:00:00Z,1,1,1,2,5,5,5,5,5,5,5,5,5,5
-v0.2.9 - v1.0.0-alpha0,2017-05-30T16:00:00Z,1,1,1,2,4,4,4,4,4,4,4,4,4,4
-v1.0.0-alpha0 - v1.0.0-alpha6,2017-07-13T00:00:00Z,1,1,2,2,4,4,4,4,4,4,4,4,4,4
-v1.0.0-alpha6 - v1.0.0-beta.0,2017-08-23T22:00:00Z,1,1,1,2,2,2,2,2,2,2,2,2,2,2
-v1.0.0-beta.0 - v1.0.0-beta.3,2017-09-06T23:00:00Z,1,2,2,3,5,5,5,5,5,5,5,5,5,5
-v1.0.0-beta.3 - v1.0.0,2017-11-08T19:00:00Z,1,1,2,3,5,5,5,5,5,5,5,5,5,5
-v1.0.0 - v1.0.1,2017-12-05T05:00:00Z,1,2,2,4,7,7,7,7,7,7,7,7,7,7
-v1.0.1 - v1.0.2,2018-01-17T19:00:00Z,1,2,2,3,5,5,5,5,5,5,5,5,5,5
-v1.0.2 - v1.0.3,2018-02-13T23:00:00Z,1,2,2,3,6,6,6,6,6,6,6,6,6,6
-v1.0.3 - v1.1.0-rc.1,2018-04-02T20:00:00Z,1,2,2,4,4,4,4,4,4,4,4,4,4,4
-v1.1.0.rc.1 - now,2018-04-05T00:00:00Z,1,2,2,4,4,4,4,4,4,4,4,4,4,4
+Release,Date from,Date to,Distinct companies for top 1 committers,Distinct companies for top 2 committers,Distinct companies for top 3 committers,Distinct companies for top 5 committers,Distinct companies for top 10 committers,Distinct companies for top 15 committers,Distinct companies for top 20 committers,Distinct companies for top 25 committers,Distinct companies for top 30 committers,Distinct companies for top 50 committers,Distinct companies for top 100 committers,Distinct companies for top 200 committers,Distinct companies for top 500 committers,Distinct companies for top 1000 committers
+start - v0.0.5,2015-12-17,2016-02-12,1,1,2,2,2,2,2,2,2,2,2,2,2,2
+v0.0.5 - v0.1.0,2016-02-12,2016-03-21,1,2,2,2,2,2,2,2,2,2,2,2,2,2
+v0.1.0 - v0.2.0,2016-03-21,2016-04-14,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+v0.2.0 - v0.2.9,2016-04-14,2017-05-30,1,1,1,2,5,5,5,5,5,5,5,5,5,5
+v0.2.9 - v1.0.0-alpha0,2017-05-30,2017-07-13,1,1,1,2,4,4,4,4,4,4,4,4,4,4
+v1.0.0-alpha0 - v1.0.0-alpha6,2017-07-13,2017-08-23,1,1,2,2,4,4,4,4,4,4,4,4,4,4
+v1.0.0-alpha6 - v1.0.0-beta.0,2017-08-23,2017-09-06,1,1,1,2,2,2,2,2,2,2,2,2,2,2
+v1.0.0-beta.0 - v1.0.0-beta.3,2017-09-06,2017-11-08,1,2,2,3,5,5,5,5,5,5,5,5,5,5
+v1.0.0-beta.3 - v1.0.0,2017-11-08,2017-12-05,1,1,2,3,5,5,5,5,5,5,5,5,5,5
+v1.0.0 - v1.0.1,2017-12-05,2018-01-17,1,2,2,4,7,7,7,7,7,7,7,7,7,7
+v1.0.1 - v1.0.2,2018-01-17,2018-02-13,1,2,2,3,5,5,5,5,5,5,5,5,5,5
+v1.0.2 - v1.0.3,2018-02-13,2018-04-02,1,2,2,3,6,6,6,6,6,6,6,6,6,6
+v1.0.3 - v1.1.0-rc.1,2018-04-02,2018-04-05,1,2,2,4,4,4,4,4,4,4,4,4,4,4
+v1.1.0.rc.1 - now,2018-04-05,2018-04-12,1,2,2,4,4,4,4,4,4,4,4,4,4,4

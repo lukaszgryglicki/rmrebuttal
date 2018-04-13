@@ -77,6 +77,80 @@ func mergeCSVs(stat, cols, ns, rowRegexp, ofn string) error {
 		nMap[iCol] = struct{}{}
 	}
 
+	// Column name mappings, column types and formats
+	// "colName1,newName1,type1,fmt1;,,,;colNameN,newNameN,typeN,fmtN"
+	// colNameI - required, column name to apply mapping
+	// newnameI - new name for column, optional, it can contain '%s' which will be replaced with N if column is dynamic
+	// typeI - type of column (to apply format): can be n (numeric), d (datetime), optional
+	// fmtI - format of column (if type given), can be Sprintf format for n, or date format for d, optional
+	// fmtI for "n" (numeric) column can be for example "%.1f%%".
+	// fmtI for "d" (datetime) column can be for example: "2012-11-01T22:08:41+00:00".
+	// I = {1,2,...N}
+	// Example: COLFMT="release,Release,,;date_from,Date,d,2012-11-01;top_commits_perc,Percent of top %s committers commits,n,%.1f%%"
+	colNameMap := make(map[string]string)
+	colFmtMap := make(map[string]func(string) string)
+	colFmt := os.Getenv("COLFMT")
+	if colFmt != "" {
+		colFmtAry := strings.Split(colFmt, ";")
+		for i, data := range colFmtAry {
+			if data == "" {
+				return fmt.Errorf("empty column format definition: '%s'", colFmt)
+			}
+			ary := strings.Split(data, ",")
+			lAry := len(ary)
+			if lAry != 4 {
+				return fmt.Errorf("#%d column format must contain 4 values: '%s', all: '%s'", i, data, colFmt)
+			}
+			col := ary[0]
+			if col == "" {
+				return fmt.Errorf("#%d column format must contain column name: '%s', all: '%s'", i, data, colFmt)
+			}
+			applied := false
+			if ary[1] != "" && ary[1] != col {
+				colNameMap[col] = ary[1]
+				applied = true
+			}
+			if ary[2] != "" && ary[3] != "" {
+				typ := ary[2]
+				form := ary[3]
+				switch typ {
+				case "n":
+					colFmtMap[col] = func(in string) string {
+						fl, err := strconv.ParseFloat(in, 64)
+						if err != nil {
+							fmt.Printf("Cannot parse number '%s'", in)
+							os.Exit(1)
+						}
+						if debug {
+							fmt.Printf("n_func: form=%s in=%s, fl=%f, out=%s\n", form, in, fl, fmt.Sprintf(form, fl))
+						}
+						return fmt.Sprintf(form, fl)
+					}
+					applied = true
+				case "d":
+					colFmtMap[col] = func(in string) string {
+						//tm, e := time.Parse("2006-01-02T15:04:05Z", in)
+						tm, err := time.Parse(time.RFC3339, in)
+						if err != nil {
+							fmt.Printf("Cannot parse datetime '%s'", in)
+							os.Exit(1)
+						}
+						if debug {
+							fmt.Printf("d_func: form=%s in=%s, tm=%v, out=%s\n", form, in, tm, tm.Format(form))
+						}
+						return tm.Format(form)
+					}
+					applied = true
+				default:
+					return fmt.Errorf("#%d column contains unknown type specification (allowed: n, d): '%s', all: '%s'", i, data, colFmt)
+				}
+			}
+			if !applied {
+				return fmt.Errorf("#%d column contains no usable transformation(s): '%s', all: '%s'", i, data, colFmt)
+			}
+		}
+	}
+
 	// main output: column name --> values
 	// each column name ins "columnI J" I-th column and J-th N
 	// First nStatic columns doesn not have N added.
@@ -179,15 +253,30 @@ func mergeCSVs(stat, cols, ns, rowRegexp, ofn string) error {
 
 	// Create header row
 	hdr := []string{}
+	hdrNoMap := []string{}
+	hdrNoN := []string{}
 	for _, col := range colsAry {
+		name, ok := colNameMap[col]
 		// Handle static columns
 		cNum := colNum[col]
 		if cNum >= nStatic {
 			for _, n := range nAry {
-				hdr = append(hdr, fmt.Sprintf("%s %s", col, n))
+				if ok {
+					hdr = append(hdr, fmt.Sprintf(name, n))
+				} else {
+					hdr = append(hdr, fmt.Sprintf("%s %s", col, n))
+				}
+				hdrNoMap = append(hdrNoMap, fmt.Sprintf("%s %s", col, n))
+				hdrNoN = append(hdrNoN, col)
 			}
 		} else {
-			hdr = append(hdr, col)
+			if ok {
+				hdr = append(hdr, name)
+			} else {
+				hdr = append(hdr, col)
+			}
+			hdrNoMap = append(hdrNoMap, col)
+			hdrNoN = append(hdrNoN, col)
 		}
 	}
 	// Write header
@@ -196,11 +285,16 @@ func mergeCSVs(stat, cols, ns, rowRegexp, ofn string) error {
 		return err
 	}
 	// Get length of data and write data
-	dataLen := len(values[hdr[0]])
+	dataLen := len(values[hdrNoMap[0]])
 	for i := 0; i < dataLen; i++ {
 		data := []string{}
-		for _, col := range hdr {
-			data = append(data, values[col][i])
+		for j, col := range hdrNoMap {
+			fmtFunc, ok := colFmtMap[hdrNoN[j]]
+			if ok {
+				data = append(data, fmtFunc(values[col][i]))
+			} else {
+				data = append(data, values[col][i])
+			}
 		}
 		err = writer.Write(data)
 		if err != nil {

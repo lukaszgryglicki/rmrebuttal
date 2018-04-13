@@ -23,6 +23,19 @@ Use DevStats databases and tools to generate contributors stats
 - To have full control on merging use: `PG_DB=projdb ./rmrebuttal nStaticCols 'staticCol1;...;staticColN;dynamicCol1;...;dynamicColN' 'n1;...;N' "colName;;;regexp" output.csv`.
 - You can see some examples in `./example_merges.sh`.
 
+# Column format mapping
+
+-  You can specify it by setting COLFMT environment variable as follows:
+- `colName1,newName1,type1,fmt1;,,,;colNameN,newNameN,typeN,fmtN`.
+- colNameI - required, column name to apply mapping, it can contain '%s' which will be replaced with N if column is dynamic.
+- newnameI - new name for column, optional.
+- typeI - type of column (to apply format): can be n (numeric), d (datetime), optional.
+- fmtI - format of column (if type given), can be Sprintf format for n, or date format for d, optional.
+- fmtI for "n" (numeric) column can be for example "%.1f%%".
+- fmtI for "d" (datetime) column can be for example: "2006-01-02T15:04:05".
+- I = {1,2,...N}.
+- Example: `COLFMT="release,Release,,;date_from,Date,d,2006-01-02;top_commits_perc,Percent of top %s committers commits,n,%.1f%%"`.
+
 # Results, charts and analysis
 
 - Data is available [here](https://docs.google.com/spreadsheets/d/1dK7h8i62G7JEtTrJ2XEYoX0vInEoA7lW0m9ssl5bXag/edit?usp=sharing)
