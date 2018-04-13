@@ -1,11 +1,11 @@
-Release,Date from,Date to,Top 1 companies contributions as percent of all,Top 2 companies contributions as percent of all,Top 3 companies contributions as percent of all,Top 5 companies contributions as percent of all,Top 10 companies contributions as percent of all,Top 15 companies contributions as percent of all,Top 20 companies contributions as percent of all,Top 25 companies contributions as percent of all,Top 30 companies contributions as percent of all,Top 50 companies contributions as percent of all,Top 100 companies contributions as percent of all,Top 200 companies contributions as percent of all,Top 500 companies contributions as percent of all,Top 1000 companies contributions as percent of all
-Quarter from 10/2015,10/1/2015,1/1/2016,65.5%,72.7%,80.0%,89.1%,96.4%,96.4%,96.4%,96.4%,96.4%,96.4%,96.4%,96.4%,96.4%,96.4%
-Quarter from 01/2016,1/1/2016,4/1/2016,80.1%,89.0%,91.4%,95.3%,97.4%,97.4%,97.4%,97.4%,97.4%,97.4%,97.4%,97.4%,97.4%,97.4%
-Quarter from 04/2016,4/1/2016,7/1/2016,77.4%,81.7%,83.5%,85.7%,90.3%,93.2%,93.5%,93.5%,93.5%,93.5%,93.5%,93.5%,93.5%,93.5%
-Quarter from 07/2016,7/1/2016,10/1/2016,76.5%,81.7%,83.5%,87.0%,91.3%,91.3%,91.3%,91.3%,91.3%,91.3%,91.3%,91.3%,91.3%,91.3%
-Quarter from 10/2016,10/1/2016,1/1/2017,60.0%,68.1%,75.1%,82.7%,88.1%,90.8%,92.4%,92.4%,92.4%,92.4%,92.4%,92.4%,92.4%,92.4%
-Quarter from 01/2017,1/1/2017,4/1/2017,66.9%,75.1%,82.3%,87.9%,92.9%,94.4%,95.0%,95.2%,95.2%,95.2%,95.2%,95.2%,95.2%,95.2%
-Quarter from 04/2017,4/1/2017,7/1/2017,69.9%,78.8%,83.5%,90.0%,96.0%,97.3%,97.7%,97.9%,97.9%,97.9%,97.9%,97.9%,97.9%,97.9%
-Quarter from 07/2017,7/1/2017,10/1/2017,70.3%,82.2%,86.7%,90.6%,93.7%,94.7%,95.0%,95.2%,95.2%,95.2%,95.2%,95.2%,95.2%,95.2%
-Quarter from 10/2017,10/1/2017,1/1/2018,55.8%,70.8%,78.3%,88.7%,92.5%,94.0%,94.6%,94.6%,94.6%,94.6%,94.6%,94.6%,94.6%,94.6%
-Quarter from 01/2018,1/1/2018,4/1/2018,38.0%,67.8%,79.5%,86.7%,89.5%,90.0%,90.3%,90.3%,90.3%,90.3%,90.3%,90.3%,90.3%,90.3%
+Release,Date from,Date to,Top 1 companies contributions as percent of all,Top 2 companies contributions as percent of all,Top 3 companies contributions as percent of all,Top 4 companies contributions as percent of all,Top 5 companies contributions as percent of all,Top 10 companies contributions as percent of all,Top 15 companies contributions as percent of all,Top 20 companies contributions as percent of all,Top 25 companies contributions as percent of all,Top 30 companies contributions as percent of all,Top 50 companies contributions as percent of all,Top 100 companies contributions as percent of all,Top 200 companies contributions as percent of all,Top 500 companies contributions as percent of all,Top 1000 companies contributions as percent of all
+Quarter from 10/2015,10/1/2015,1/1/2016,65.5%,72.7%,80.0%,85.5%,89.1%,96.4%,96.4%,96.4%,96.4%,96.4%,96.4%,96.4%,96.4%,96.4%,96.4%
+Quarter from 01/2016,1/1/2016,4/1/2016,80.1%,89.0%,91.4%,93.7%,95.3%,97.4%,97.4%,97.4%,97.4%,97.4%,97.4%,97.4%,97.4%,97.4%,97.4%
+Quarter from 04/2016,4/1/2016,7/1/2016,77.4%,81.7%,83.5%,84.6%,85.7%,90.3%,93.2%,93.5%,93.5%,93.5%,93.5%,93.5%,93.5%,93.5%,93.5%
+Quarter from 07/2016,7/1/2016,10/1/2016,76.5%,81.7%,83.5%,85.2%,87.0%,91.3%,91.3%,91.3%,91.3%,91.3%,91.3%,91.3%,91.3%,91.3%,91.3%
+Quarter from 10/2016,10/1/2016,1/1/2017,60.0%,68.1%,75.1%,80.5%,82.7%,88.1%,90.8%,92.4%,92.4%,92.4%,92.4%,92.4%,92.4%,92.4%,92.4%
+Quarter from 01/2017,1/1/2017,4/1/2017,66.9%,75.1%,82.3%,86.3%,87.9%,92.9%,94.4%,95.0%,95.2%,95.2%,95.2%,95.2%,95.2%,95.2%,95.2%
+Quarter from 04/2017,4/1/2017,7/1/2017,69.9%,78.8%,83.5%,88.0%,90.0%,96.0%,97.3%,97.7%,97.9%,97.9%,97.9%,97.9%,97.9%,97.9%,97.9%
+Quarter from 07/2017,7/1/2017,10/1/2017,70.3%,82.2%,86.7%,89.4%,90.6%,93.7%,94.7%,95.0%,95.2%,95.2%,95.2%,95.2%,95.2%,95.2%,95.2%
+Quarter from 10/2017,10/1/2017,1/1/2018,55.8%,70.8%,78.3%,85.7%,88.7%,92.5%,94.0%,94.6%,94.6%,94.6%,94.6%,94.6%,94.6%,94.6%,94.6%
+Quarter from 01/2018,1/1/2018,4/1/2018,38.0%,67.8%,79.5%,83.7%,86.7%,89.5%,90.0%,90.3%,90.3%,90.3%,90.3%,90.3%,90.3%,90.3%,90.3%

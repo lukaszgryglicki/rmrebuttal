@@ -118,8 +118,8 @@ func mergeCSVs(stat, cols, ns, rowRegexp, ofn string) error {
 					colFmtMap[col] = func(in string) string {
 						fl, err := strconv.ParseFloat(in, 64)
 						if err != nil {
-							fmt.Printf("Cannot parse number '%s'", in)
-							os.Exit(1)
+							fmt.Printf("Cannot parse number '%s'\n", in)
+							return ""
 						}
 						if debug {
 							fmt.Printf("n_func: form=%s in=%s, fl=%f, out=%s\n", form, in, fl, fmt.Sprintf(form, fl))
@@ -132,8 +132,8 @@ func mergeCSVs(stat, cols, ns, rowRegexp, ofn string) error {
 						//tm, e := time.Parse("2006-01-02T15:04:05Z", in)
 						tm, err := time.Parse(time.RFC3339, in)
 						if err != nil {
-							fmt.Printf("Cannot parse datetime '%s'", in)
-							os.Exit(1)
+							fmt.Printf("Cannot parse datetime '%s'\n", in)
+							return ""
 						}
 						if debug {
 							fmt.Printf("d_func: form=%s in=%s, tm=%v, out=%s\n", form, in, tm, tm.Format(form))
