@@ -402,3 +402,25 @@ We can see that when allalysing strict committers only:
   - In 3rd quarter of 2017 top 50 developers from 27 companies are making 63% of all commits.
   - Top 200 committers from 84 companies make 96% and there is less than 500 committers.
 
+# Kubernetes contributions analysis 
+
+This is the combined [chart](https://docs.google.com/spreadsheets/d/1tdHqydcDQ7bUWMxHbYADiLmym2UBFcDTUDPCCfRNJuc/edit#gid=485224280) of per committer, per company analysis of Kubernetes contributions in quarters from 2nd quarter of 2014.
+
+- It clearly shows dropping of Top N contributors percent of all contributions:
+  - Top 1 shows drop of most active conbutors percent of contributions from 31% to 2%.
+  - Top 5 drops from 81% to 8%.
+  - Top 10 drops from 89% to 13% (and shows most dramatic drop, from very major contributions 90% to just quite small 13%).
+  - Top 30 from 97% to 27% this is something like the "middle trend line".
+  - Top 100 drops from 100% (which means there was less than 100 contributors at the beginning) to about 50% (half of the entire project now is done by 100 contributors).
+  - Finally Top 1000, just to show that we reached this level, and 85% of all contribution made by 1000 contributors, but still 15% of project is done by tail after first 1000!
+
+- The few lines for Top N contributing companies:
+  - Top 1 show drop of single compnay controlling project (85% at the beginning) to just 20%.
+  - Top 2 companies show drop from 90% to 32%.
+  - Top 10 companies (which was 100% before July 2014) now accounts for 50% (half of all contributions).
+  - About April 2015 we crossed 50 different companies, and now they account for 67% of contributions (not included top 100 or more, because here we don't have too much accurate data, we will never reach 100% due to missing affiliations, so top 50 is just about limit of our data atm).
+
+- Finally just 3 series that use right y axis (to show number for contributions data shown in 1 and 2):
+  - Number of distinct contributors per given quarter.
+  - Number of distinct contributing companies per given quarter.
+  - Average number of contributions/day in a given quarter.
