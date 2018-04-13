@@ -424,3 +424,7 @@ This is the combined [chart](https://docs.google.com/spreadsheets/d/1tdHqydcDQ7b
   - Number of distinct contributors per given quarter.
   - Number of distinct contributing companies per given quarter.
   - Average number of contributions/day in a given quarter.
+
+# prometheus contributions analysis
+
+This is the combined [chart](https://docs.google.com/spreadsheets/d/1KtOQRYtflcDVL9FFOJiBxH0adthH5gsIbUPOnFkgIBA/edit?usp=sharing) of per committer, per company analysis of Prometheus contributions in quarters from 1st quarter of 2015.

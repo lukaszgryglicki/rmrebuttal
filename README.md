@@ -47,3 +47,4 @@ Use DevStats databases and tools to generate contributors stats
 - Committers data sheets and charts are [here](https://docs.google.com/spreadsheets/d/1OY8JHREEZgbvRDFDOplxJJFvEtlcs5TSXbv6JER9_TY/edit?usp=sharing).
 - Contributing companies data sheets and charts are [here](https://docs.google.com/spreadsheets/d/1elKts4n5FHzLr9Ob4OUID1MvJ51dmdQDnPP6mgN-O78/edit?usp=sharing).
 - Final Kubernetes chart is [here](https://docs.google.com/spreadsheets/d/1tdHqydcDQ7bUWMxHbYADiLmym2UBFcDTUDPCCfRNJuc/edit?usp=sharing).
+- Final Prometheus chart is [here](https://docs.google.com/spreadsheets/d/1KtOQRYtflcDVL9FFOJiBxH0adthH5gsIbUPOnFkgIBA/edit?usp=sharing).
