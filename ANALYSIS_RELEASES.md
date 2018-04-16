@@ -425,6 +425,8 @@ This is the combined [chart](https://docs.google.com/spreadsheets/d/1tdHqydcDQ7b
   - Number of distinct contributing companies per given quarter.
   - Average number of contributions/day in a given quarter.
 
-# prometheus contributions analysis
+This [chart](https://docs.google.com/spreadsheets/d/1vOpVAHy4_vkBl0RIu6OW6qUmrknSLaalcre2CgiB2M8/edit#gid=319762253) shows analysis for data before and after joining CNCF.
+
+# Prometheus contributions analysis
 
 This is the combined [chart](https://docs.google.com/spreadsheets/d/1KtOQRYtflcDVL9FFOJiBxH0adthH5gsIbUPOnFkgIBA/edit?usp=sharing) of per committer, per company analysis of Prometheus contributions in quarters from 1st quarter of 2015.
