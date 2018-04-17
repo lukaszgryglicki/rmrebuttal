@@ -116,6 +116,9 @@ func mergeCSVs(stat, cols, ns, rowRegexp, ofn string) error {
 				switch typ {
 				case "n":
 					colFmtMap[col] = func(in string) string {
+						if in == "" {
+							return ""
+						}
 						fl, err := strconv.ParseFloat(in, 64)
 						if err != nil {
 							fmt.Printf("Cannot parse number '%s'\n", in)

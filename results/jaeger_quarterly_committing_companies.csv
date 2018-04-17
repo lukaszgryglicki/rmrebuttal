@@ -1,0 +1,7 @@
+Release,Date from,Date to,Distinct companies for top 1 committers,Distinct companies for top 2 committers,Distinct companies for top 3 committers,Distinct companies for top 4 committers,Distinct companies for top 5 committers,Distinct companies for top 10 committers,Distinct companies for top 15 committers,Distinct companies for top 20 committers,Distinct companies for top 25 committers,Distinct companies for top 30 committers,Distinct companies for top 50 committers,Distinct companies for top 100 committers,Distinct companies for top 200 committers,Distinct companies for top 500 committers,Distinct companies for top 1000 committers
+Quarter from 10/2016,10/1/2016,1/1/2017,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Quarter from 01/2017,1/1/2017,4/1/2017,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Quarter from 04/2017,4/1/2017,7/1/2017,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2
+Quarter from 07/2017,7/1/2017,10/1/2017,0,1,1,1,2,3,3,3,3,3,3,3,3,3,3
+Quarter from 10/2017,10/1/2017,1/1/2018,0,1,1,1,1,2,2,2,2,2,2,2,2,2,2
+Quarter from 01/2018,1/1/2018,4/1/2018,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2
