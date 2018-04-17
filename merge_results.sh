@@ -12,7 +12,7 @@ else
 fi
 if [ -z "$PROJS" ]
 then
-  PROJS="kubernetes prometheus containerd envoy grpc allprj"
+  PROJS="kubernetes prometheus containerd envoy grpc allprj opentracing fluentd linkerd coredns rkt cni jaeger notary tuf rook vitess nats opa spiffe spire cncf"
 fi
 if [ -z "$COLFMT" ]
 then
