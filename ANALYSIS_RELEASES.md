@@ -430,3 +430,7 @@ This [chart](https://docs.google.com/spreadsheets/d/1vOpVAHy4_vkBl0RIu6OW6qUmrkn
 # Prometheus contributions analysis
 
 This is the combined [chart](https://docs.google.com/spreadsheets/d/1KtOQRYtflcDVL9FFOJiBxH0adthH5gsIbUPOnFkgIBA/edit?usp=sharing) of per committer, per company analysis of Prometheus contributions in quarters from 1st quarter of 2015.
+
+# All CNCF projects Top 2 companies and Top 10 developers
+
+data and chart is [here](https://docs.google.com/spreadsheets/d/1eqrya4N7cZOTLumXAh7Bb2DL3nUvNje38sbipEBlYTM/edit?usp=sharing).
