@@ -10,3 +10,8 @@ union select 1009 as ord, '2017-06-29 22:53:16'::timestamp as f, '2017-09-28 22:
 union select 1010 as ord, '2017-09-28 22:13:57'::timestamp as f, '2017-12-15 20:53:13'::timestamp as t, 'v1.8.0 - v1.9.0' as rel
 union select 1011 as ord, '2017-12-15 20:53:13'::timestamp as f, '2018-03-26 16:41:58'::timestamp as t, 'v1.9.0 - v1.10.0' as rel
 union select 1012 as ord, '2018-03-26 16:41:58'::timestamp as f, now()::date as t, 'v1.10.0 - now' as rel
+union select 1101 as ord, (select timestamp from start_date) as f, '2015-01-01 00:00:00' as t, '2014' as rel
+union select 1103 as ord, '2015-01-01 00:00:00'::timestamp as f, '2016-01-01 00:00:00'::timestamp as t, '2015' as rel
+union select 1103 as ord, '2016-01-01 00:00:00'::timestamp as f, '2017-01-01 00:00:00'::timestamp as t, '2016' as rel
+union select 1104 as ord, '2017-01-01 00:00:00'::timestamp as f, '2018-01-01 00:00:00'::timestamp as t, '2017' as rel
+union select 1105 as ord, '2018-01-01 00:00:00'::timestamp as f, now()::date as t, '2018' as rel
