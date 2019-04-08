@@ -80,7 +80,8 @@ from (
     and e.created_at < d.t
     and (e.dup_actor_login {{exclude_bots}})
     and e.type in (
-      'PushEvent', 'PullRequestEvent', 'IssuesEvent'
+      'PushEvent', 'PullRequestEvent', 'IssuesEvent',
+      'CommitCommentEvent', 'IssueCommentEvent', 'PullRequestReviewCommentEvent'
     )
   group by
     d.f,
@@ -125,7 +126,8 @@ from (
     and e.created_at < d.t
     and (e.dup_actor_login {{exclude_bots}})
     and e.type in (
-      'PushEvent', 'PullRequestEvent', 'IssuesEvent'
+      'PushEvent', 'PullRequestEvent', 'IssuesEvent',
+      'CommitCommentEvent', 'IssueCommentEvent', 'PullRequestReviewCommentEvent'
     )
   group by
     d.f,
@@ -528,7 +530,7 @@ from (
     e.created_at >= d.f
     and e.created_at < d.t
     and (e.dup_actor_login {{exclude_bots}})
-    and e.type in ('CommitCommentEvent', 'IssueCommentEvent')
+    and e.type in ('CommitCommentEvent', 'IssueCommentEvent', 'PullRequestReviewCommentEvent')
   group by
     d.f,
     d.t,
@@ -571,7 +573,7 @@ from (
     and e.created_at >= d.f
     and e.created_at < d.t
     and (e.dup_actor_login {{exclude_bots}})
-    and e.type in ('CommitCommentEvent', 'IssueCommentEvent')
+    and e.type in ('CommitCommentEvent', 'IssueCommentEvent', 'PullRequestReviewCommentEvent')
   group by
     d.f,
     d.t,
@@ -819,24 +821,24 @@ from (
     d.t as date_to,
     d.rel as release,
     date_part('day', d.t - d.f) as days,
-    count(e.id) filter (where e.type in ('PushEvent', 'PullRequestEvent', 'IssuesEvent')) as contributions,
+    count(e.id) filter (where e.type in ('PushEvent', 'PullRequestEvent', 'IssuesEvent', 'CommitCommentEvent', 'IssueCommentEvent', 'PullRequestReviewCommentEvent')) as contributions,
     count(e.id) filter (where e.type = 'PushEvent') as pushes,
     count(e.id) filter (where e.type = 'IssuesEvent') as issue_evs,
     count(e.id) filter (where e.type = 'PullRequestEvent') as pr_evs,
     count(e.id) filter (where e.type = 'PullRequestReviewCommentEvent') as pr_reviews,
-    count(e.id) filter (where e.type in ('CommitCommentEvent', 'IssueCommentEvent')) as comment_evs,
-    count(distinct e.actor_id) filter (where e.type in ('PushEvent', 'PullRequestEvent', 'IssuesEvent')) as contributors,
+    count(e.id) filter (where e.type in ('CommitCommentEvent', 'IssueCommentEvent', 'PullRequestReviewCommentEvent')) as comment_evs,
+    count(distinct e.actor_id) filter (where e.type in ('PushEvent', 'PullRequestEvent', 'IssuesEvent', 'CommitCommentEvent', 'IssueCommentEvent', 'PullRequestReviewCommentEvent')) as contributors,
     count(distinct e.actor_id) filter (where e.type = 'PushEvent') as committers,
     count(distinct e.actor_id) filter (where e.type = 'IssuesEvent') as issuers,
     count(distinct e.actor_id) filter (where e.type = 'PullRequestEvent') as pr_creators,
     count(distinct e.actor_id) filter (where e.type = 'PullRequestReviewCommentEvent') as pr_reviewers,
-    count(distinct e.actor_id) filter (where e.type in ('CommitCommentEvent', 'IssueCommentEvent')) as commenters,
-    count(distinct af.company_name) filter (where e.type in ('PushEvent', 'PullRequestEvent', 'IssuesEvent') and af.company_name is not null) as contributing_coms,
+    count(distinct e.actor_id) filter (where e.type in ('CommitCommentEvent', 'IssueCommentEvent', 'PullRequestReviewCommentEvent')) as commenters,
+    count(distinct af.company_name) filter (where e.type in ('PushEvent', 'PullRequestEvent', 'IssuesEvent', 'CommitCommentEvent', 'IssueCommentEvent', 'PullRequestReviewCommentEvent') and af.company_name is not null) as contributing_coms,
     count(distinct af.company_name) filter (where e.type = 'PushEvent' and af.company_name is not null) as committing_coms,
     count(distinct af.company_name) filter (where e.type = 'IssuesEvent' and af.company_name is not null) as issuers_coms,
     count(distinct af.company_name) filter (where e.type = 'PullRequestEvent' and af.company_name is not null) as pr_creating_coms,
     count(distinct af.company_name) filter (where e.type = 'PullRequestReviewCommentEvent' and af.company_name is not null) as pr_reviewing_coms,
-    count(distinct af.company_name) filter (where e.type in ('CommitCommentEvent', 'IssueCommentEvent') and af.company_name is not null) as commenting_coms
+    count(distinct af.company_name) filter (where e.type in ('CommitCommentEvent', 'IssueCommentEvent', 'PullRequestReviewCommentEvent') and af.company_name is not null) as commenting_coms
   from
     dates d,
     gha_events e
