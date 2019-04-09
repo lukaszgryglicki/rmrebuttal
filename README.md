@@ -8,6 +8,8 @@ Use DevStats databases and tools to generate contributors stats
 
 # Usage
 
+- TODO: First update committer definition in `query.sql`: use `gha_commits:dup_commiter_login` instead of `gha_events:dup_actor_login`.
+
 - You need to have DevStats K8s database and `runq` binary copied to the root directory of this repo.
 - Just run `PG_PASS=... ./get_data.sh 10` script to generate Top 10 data for Kubernetes.
 - Run `PG_PASS=... PG_DB=prometheus ./get_data.sh 30` script to generate Top 30 data for Prometheus.
