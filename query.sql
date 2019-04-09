@@ -12,7 +12,7 @@ from (
 ) as unique_input;
 $$
 language 'sql' immutable strict;
-
+-- It uses gha_events and actor as a committer, newer definition is using gha_commits + committer_login
 with n as (
   select {{n}} as n
 ), start_date as (
